@@ -13,14 +13,13 @@ const WrongUrl = ({ setPageTitle }) => {
 
   return (
     <div className="WrongUrl text-center">
-      <Container fixed>
-        <img src={errorImg} alt="" />
-        <h1>404 - PAGE NOT FOUND</h1>
-        <p>The page you are looking for might have been removed <br/> had it's name changed or is temporarily unavailable</p>
-        <Button onClick={() => navigate('/')}variant="contained">
-          GO TO HOMEPAGE
-        </Button>
-      </Container>
+      <img src={errorImg} alt="" />
+      <h1>404 - PAGE NOT FOUND</h1>
+      <p className="mb-0">The page you are looking for might have been removed </p>
+      <p>had it's name changed or is temporarily unavailable</p>
+      <Button onClick={() => navigate("/")} variant="contained">
+        GO TO HOMEPAGE
+      </Button>
     </div>
   );
 };
