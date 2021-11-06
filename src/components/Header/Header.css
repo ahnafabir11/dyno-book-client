@@ -1,16 +1,3 @@
-nav {
-  height: 53px;
-}
-
-.Header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background-color: white;
-  border-bottom: 1px solid #ddd;
-  position: fixed;
-}
-
 .hearder_search_box {
   flex: 1;
   min-width: none;

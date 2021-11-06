@@ -11,8 +11,8 @@ const Header = () => {
   const [openYearDrawer, setOpenYearDrawer] = useState(false);
 
   return (
-    <nav>
-      <div className="Header">
+    <nav className="h-1">
+      <div className="bg-white flex items-center border-b border-gray fixed w-full">
         <IconButton
           size="large"
           edge="start"
