@@ -20,7 +20,7 @@ function App() {
       <Header />
       {/* Routes */}
       <Routes>
-        <Route path='/' element={<LandingPage />} />
+        <Route path='/' element={<LandingPage setPageTitle={setPageTitle} />} />
         <Route path='/about' element={<AboutUs setPageTitle={setPageTitle} />} />
         <Route path='*' element={<WrongUrl setPageTitle={setPageTitle} />} />
       </Routes>

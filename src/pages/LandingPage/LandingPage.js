@@ -1,55 +1,16 @@
 import './LandingPage.css'
-import React from 'react';
+import React, { useEffect } from 'react';
+import topSectionImg from '../../images/home-page-img.png';
+import secondSectionImg from '../../images/home-page-img-2.png';
 
-const LandingPage = () => {
+const LandingPage = ({ setPageTitle }) => {
+  useEffect(() => {
+    setPageTitle('Dyno Book')
+  }, [])
+
   return (
     <div className="LandingPage">
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
-      <h1 className="text-center">Home page</h1>
+
     </div>
   );
 };
