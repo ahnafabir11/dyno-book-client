@@ -1,17 +1,17 @@
-import './Header.css';
-import React, { useState } from 'react';
-import { IconButton, Typography, Button, Drawer } from '@mui/material';
-import { Box, List, ListItem } from '@mui/material';
-import { MdOutlineMapsHomeWork } from 'react-icons/md';
-import { ImSortNumbericDesc } from 'react-icons/im';
-import { Link } from 'react-router-dom';
+import "./Header.css";
+import React, { useState } from "react";
+import { IconButton, Typography, Button, Drawer } from "@mui/material";
+import { Box, List, ListItem } from "@mui/material";
+import { MdOutlineMapsHomeWork } from "react-icons/md";
+import { ImSortNumbericDesc } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const [openVersityDrawer, setOpenVersityDrawer] = useState(false)
-  const [openYearDrawer, setOpenYearDrawer] = useState(false)
+  const [openVersityDrawer, setOpenVersityDrawer] = useState(false);
+  const [openYearDrawer, setOpenYearDrawer] = useState(false);
 
   return (
-    <nav style={{height: '53px'}}>
+    <nav>
       <div className="Header">
         <IconButton
           size="large"
@@ -24,13 +24,10 @@ const Header = () => {
           <MdOutlineMapsHomeWork color="#000" />
         </IconButton>
 
-        <Typography
-          noWrap
-          variant="h6"
-          component="div"
-          sx={{ml: 1}}
-        >
-          <Link to="/" className="text-decoration-none text-black">DYNO BOOK</Link>
+        <Typography noWrap variant="h6" component="div" sx={{ ml: 1 }}>
+          <Link to="/" className="text-decoration-none text-black">
+            DYNO BOOK
+          </Link>
         </Typography>
 
         <Box flexGrow="1" />
@@ -41,7 +38,7 @@ const Header = () => {
           className="hearder_search_box"
         />
 
-        <Button variant='contained'>
+        <Button variant="contained">
           <Typography noWrap>add new question</Typography>
         </Button>
 
@@ -99,6 +96,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
