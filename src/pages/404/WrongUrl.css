@@ -1,12 +1,11 @@
 .WrongUrl {
   max-width: 600px;
-  margin: auto;
+  margin: 10% auto;
   padding: 0 20px;
 }
 
 .WrongUrl img {
   width: 100%;
-  margin-top: 30%;
 }
 
 .WrongUrl h1 {

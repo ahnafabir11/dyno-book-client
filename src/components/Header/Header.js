@@ -11,7 +11,7 @@ const Header = () => {
   const [openYearDrawer, setOpenYearDrawer] = useState(false)
 
   return (
-    <nav>
+    <nav style={{height: '53px'}}>
       <div className="Header">
         <IconButton
           size="large"
