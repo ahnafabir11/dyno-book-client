@@ -2,6 +2,8 @@ import "./AboutUs.css";
 import React, { useEffect } from "react";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { MdExpandMore } from "react-icons/md";
+import teamMemberOne from '../../images/team-member-img-1.jpg';
+import teamMemberTwo from '../../images/team-member-img-2.jpg';
 
 const AboutUs = ({ setPageTitle }) => {
   useEffect(() => {
@@ -31,7 +33,7 @@ const AboutUs = ({ setPageTitle }) => {
         </p>
       </section>
 
-      <section className="my-10">
+      <section className="mt-10">
         <Accordion>
           <AccordionSummary
             expandIcon={<MdExpandMore />}
@@ -42,7 +44,7 @@ const AboutUs = ({ setPageTitle }) => {
           </AccordionSummary>
           <AccordionDetails>
             <p className="text-justify text-sm md:text-base">
-              You don't need to send your money to use it. There is no premium content here. All the contents here are completely free for everybody. It's really easy to use, you will not face any trouble to it. We have tried to make it easy to navigate as much as possible. Most importantly you don't need to create any account to use it.
+              You don't need to send your money to use it. There is no premium content here. All the contents here are completely free for everybody. It's really easy to use, you will not face any trouble with it. We have tried to make it easy to navigate as much as possible. Most importantly you don't need to create any account to use it.
             </p>
           </AccordionDetails>
         </Accordion>
@@ -57,8 +59,7 @@ const AboutUs = ({ setPageTitle }) => {
           </AccordionSummary>
           <AccordionDetails>
             <p className="text-justify text-sm md:text-base">
-              Generating question paper is one of our best features. You can generate a question paper for a specific examination. The
-              question will be random. You will not get the same question again and again. You can also filter question category to generate. For example - you select only grammar category and you will get a question paper base on grammar.
+              Generating question paper is one of our best features. You can generate a question paper for a specific examination. The question will be random. You will not get the same question again and again. You can also filter question categories to generate. For example - you have selected only the grammar category and you will get a question paper based on grammar.
             </p>
           </AccordionDetails>
         </Accordion>
@@ -73,11 +74,14 @@ const AboutUs = ({ setPageTitle }) => {
           </AccordionSummary>
           <AccordionDetails>
             <p className="text-justify text-sm md:text-base">
-              Question filtering is one of the strongest feature of Dyno Book. You will find almost all type of category to filter your
-              question. For example you can filter by institution, academic year, subject, specific topic of any subject.
+              Question filtering is one of the strongest features of Dyno Book. You will find almost all types of categories to filter your question. For example, you can filter by institution, academic year, subject, a specific topic of any subject.
             </p>
           </AccordionDetails>
         </Accordion>
+      </section>
+
+      <section className="my-10">
+
       </section>
     </main>
   );

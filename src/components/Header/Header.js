@@ -41,7 +41,7 @@ const Header = () => {
           className="hearder_search_box"
         />
 
-        <Link to="/about" className="text-blue-500 font-medium mx-2">About Us</Link>
+        <Link to="/about" className="text-blue-500 font-medium mr-4">About Us</Link>
 
         <div className="hidden">
           <Button variant="contained">
