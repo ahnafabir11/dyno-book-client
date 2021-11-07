@@ -42,7 +42,7 @@ const LandingPage = ({ setPageTitle }) => {
           </div>
         </section>
 
-        <section>
+        <section className="mb-8">
           <h1 className="text-center mt-10 text-lg font-bold xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl md:mt-20">
             LOOKING FOR ADMISSION QUESTION
           </h1>

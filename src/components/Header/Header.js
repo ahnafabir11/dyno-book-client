@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <nav className="h-1">
-      <div className="bg-white flex items-center border-b border-gray fixed w-full">
+      <div className="bg-white flex items-center border-b border-gray fixed w-full z-10">
         <IconButton
           size="large"
           edge="start"
