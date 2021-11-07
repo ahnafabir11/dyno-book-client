@@ -1,12 +1,13 @@
 import './LandingPage.css'
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { ExamTypeContext } from '../../App';
 import { Box } from '@mui/material';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import topSectionImg from '../../images/home-page-img.png';
 import secondSectionImg from '../../images/home-page-img-2.png';
 
 const LandingPage = ({ setPageTitle }) => {
-  const [examType, setExamType] = useState(null)
+  const [examType, setExamType] = useContext(ExamTypeContext)
 
   useEffect(() => {
     setPageTitle('Dyno Book')
