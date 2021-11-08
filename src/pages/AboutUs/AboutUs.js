@@ -13,11 +13,11 @@ const AboutUs = ({ setPageTitle }) => {
   return (
     <main className="container mx-auto px-2">
       <section className="mt-4 sm:mt-8">
-        <h1 className="mb-3 text-2xl font-semibold xs:font-bold sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl">
+        <h1 className="about-us-heading">
           What is Dyno Book ?
         </h1>
 
-        <p className="text-justify text-sm xs:text-base md:text-md lg:text-lg 2xl:text-xl">
+        <p className="about-us-details">
           Dyno Book comes form two different words - Dynamic and Book. Yeah! You
           have guessed it right. Dyno Book means dynamic book. But why do we
           call it dynamic or what made it dynamic? And why do we call this
@@ -39,11 +39,11 @@ const AboutUs = ({ setPageTitle }) => {
       </section>
 
       <section className="mt-10 sm:mt-14">
-        <h1 className="mb-3 text-2xl font-semibold xs:font-bold sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl 2xl:text-6xl">
+        <h1 className="about-us-heading">
           Why Would I Use Dyno Book ?
         </h1>
 
-        <p className="text-justify text-sm xs:text-base md:text-md lg:text-lg 2xl:text-xl">
+        <p className="about-us-details">
           As we already said Dyno Book is completely free. You don't need to
           spend a single buck to use it, you don't need to get any subscription
           for it whereas you have to buy books from any book store. Even you
@@ -122,41 +122,50 @@ const AboutUs = ({ setPageTitle }) => {
       </section>
 
       <section className="my-10">
-        <h1 className="mb-3 text-2xl font-semibold xs:font-bold sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl 2xl:text-6xl">
+        <h1 className="about-us-heading">
           Meet Our Team
         </h1>
-        <p className="text-justify text-sm md:text-base">
+
+        <p className="about-us-details">
           Dyno Book owned and monitored by only two Person. This website is
           created by two Bangladeshi Developer. No other person or organization
           is involved here. If you want to contact with us for Business purpose
-          or have any queries about Dyno Book, please drop a mail here - ({" "}
-          <span className="text-blue-500 font-semibold underline">
-            ahnafabir313@gmail.com
-          </span>{" "}
-          ).
+          or have any queries about Dyno Book, please drop a mail here -
+          <a href="mailto:ahnafabir313@gmail.com" className="text-blue-500 underline"> ahnafabir313@gmail.com</a>
         </p>
-        <div className="flex items-center flex-col md:flex-row lg:mt-10">
-          <div className="flex-1 items-center text-center grid justify-items-center my-10 font-semibold">
+
+        <div className="flex flex-col items-center md:flex-row mt-14 md:mt-20">
+          <div className="flex-1 grid justify-items-center font-semibold">
             <img
               src={teamMemberOne}
               alt="Ahnaf Abir"
               className="w-40 sm:w-48 lg:w-56 rounded-full"
             />
-            <h1 className="text-2xl mt-3">Ahnaf Abir</h1>
-            <p>Founder, Web Developer</p>
-            <p>Chittagong, Bangladesh</p>
-            <p className="text-blue-500 mt-3 underline">ahnafabir313@gmail.com</p>
+            <h1 className="text-xl mt-3 xs:text-2xl">Ahnaf Abir</h1>
+            <p className="text-sm xs:text-base">Founder, Web Developer</p>
+            <p className="text-sm xs:text-base">Chittagong, Bangladesh</p>
+            <a
+              href="mailto:ahnafabir313@gmail.com"
+              className="text-sm text-blue-500 mt-3 underline xs:text-base">
+              ahnafabir313@gmail.com
+            </a>
           </div>
-          <div className="flex-1 justify-center text-center grid justify-items-center font-semibold">
+
+          <div className="flex-1 grid justify-items-center font-semibold mt-10 md:mt-0">
             <img
               src={teamMemberTwo}
               alt="Md Symoon"
               className="w-40 sm:w-48 lg:w-56 rounded-full"
             />
-            <h1 className="text-2xl mt-3">Md Symoon</h1>
-            <p >Co-Founder, Web Developer</p>
-            <p>Chittagong, Bangladesh</p>
-            <p className="text-blue-500 mt-3 underline">mdsymoon11@gmail.com</p>
+            <h1 className="text-xl mt-3 xs:text-2xl">Md Symoon</h1>
+            <p className="text-sm xs:text-base">Co-Founder, Web Developer</p>
+            <p className="text-sm xs:text-base">Chittagong, Bangladesh</p>
+            <a
+              href="mailto:mdsymoon11@gmail.com"
+              className="text-sm text-blue-500 mt-3 underline xs:text-base"
+            >
+              mdsymoon11@gmail.com
+            </a>
           </div>
         </div>
       </section>
