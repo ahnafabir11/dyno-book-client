@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { PageTitle } from "../../App";
 import Button from "@mui/material/Button";
 import errorImg from "../../images/page-not-found-img.png";
 
-const WrongUrl = ({ setPageTitle }) => {
+const WrongUrl = () => {
   const navigate = useNavigate()
+  const [,setPageTitle] = useContext(PageTitle)
 
   useEffect(() => {
     setPageTitle("Page Not Found")
