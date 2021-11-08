@@ -8,9 +8,7 @@ const WrongUrl = () => {
   const navigate = useNavigate()
   const [,setPageTitle] = useContext(PageTitle)
 
-  useEffect(() => {
-    setPageTitle("Page Not Found")
-  }, [])
+  useEffect(() => setPageTitle("Page Not Found"))
 
   return (
     <div className="WrongUrl">

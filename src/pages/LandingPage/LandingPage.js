@@ -1,5 +1,5 @@
 import './LandingPage.css'
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ExamTypeContext, PageTitle } from '../../App';
 import { Box } from '@mui/material';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
@@ -10,9 +10,7 @@ const LandingPage = () => {
   const [, setPageTitle] = useContext(PageTitle)
   const [examType, setExamType] = useContext(ExamTypeContext)
 
-  useEffect(() => {
-    setPageTitle('Dyno Book')
-  }, [])
+  useEffect(() => setPageTitle('Dyno Book'))
 
   return (
     <div className="LandingPage">

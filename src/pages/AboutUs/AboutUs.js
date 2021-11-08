@@ -9,9 +9,7 @@ import teamMemberTwo from "../../images/team-member-img-2.jpg";
 const AboutUs = () => {
   const [,setPageTitle] = useContext(PageTitle)
   
-  useEffect(() => {
-    setPageTitle("About Us | Dyno Book");
-  }, []);
+  useEffect(() => setPageTitle("About Us | Dyno Book"))
 
   return (
     <main className="container mx-auto px-2">
