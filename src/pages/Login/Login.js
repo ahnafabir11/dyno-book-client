@@ -1,19 +1,22 @@
 import "./Login.css";
-import React, { useEffect, useContext } from "react";
-import { PageTitle } from "../../App";
+import React, { useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoggedInUser, PageTitle } from "../../App";
 import {
-  Container,
-  Box,
-  Avatar,
-  Typography,
-  TextField,
-  Button,
-  Alert, AlertTitle
+  Container, Box, Avatar,
+  Typography, TextField, Button,
+  Alert, AlertTitle, Snackbar
 } from "@mui/material";
 import { AiFillLock } from "react-icons/ai";
 
 const Login = () => {
+  const navigate = useNavigate()
+
+  const [, setLoggedInUser] = useContext(LoggedInUser)
   const [, setPageTitle] = useContext(PageTitle)
+
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
 
   useEffect(() => setPageTitle("Login | Dyno Book"))
 
@@ -21,15 +24,40 @@ const Login = () => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
 
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    fetch("http://localhost:5000/api/users/login", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: data.get('email'),
+        password: data.get('password')
+      })
     })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.data)
+        if (data.data.length > 0) {
+          setSnackbarOpen(false)
+          setLoggedInUser(data.data[0])
+          navigate(-1)
+
+        } else {
+          setErrorMessage(data.response.message)
+          setSnackbarOpen(true)
+
+        }
+      })
+
   }
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return
+    setSnackbarOpen(false)
+  }
+
 
   return (
     <Container component="main" maxWidth="xs">
-      <Alert severity="warning" sx={{marginTop: 1}}>
+      <Alert severity="warning" sx={{ marginTop: 1 }}>
         <AlertTitle>Warning</AlertTitle>
         This Login page is for admin users only. Don't try to LoginIn if you are not admin!
       </Alert>
@@ -69,12 +97,22 @@ const Login = () => {
             type="password"
             autoComplete="current-password"
           />
-          
+
           <Button fullWidth variant="contained" type="submit" sx={{ mt: 3, mb: 2 }}>
             Sign In
           </Button>
         </Box>
       </Box>
+
+      {/* wrong credential alert */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration="5000"
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert severity="error" onClose={handleSnackbarClose}>{errorMessage}</Alert>
+      </Snackbar>
     </Container>
   );
 };
