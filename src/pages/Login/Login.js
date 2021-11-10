@@ -46,6 +46,10 @@ const Login = () => {
 
         }
       })
+      .catch(err => {
+        setErrorMessage("something went wrong")
+        setSnackbarOpen(true)
+      })
 
   }
 
@@ -107,7 +111,7 @@ const Login = () => {
       {/* wrong credential alert */}
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration="5000"
+        autoHideDuration={5000}
         onClose={handleSnackbarClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
