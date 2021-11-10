@@ -36,10 +36,9 @@ const Login = () => {
       .then(data => {
         console.log(data.data)
         if (data.data.length > 0) {
+          navigate('/')
           setSnackbarOpen(false)
           setLoggedInUser(data.data[0])
-          navigate(-1)
-
         } else {
           setErrorMessage(data.response.message)
           setSnackbarOpen(true)
