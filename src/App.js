@@ -6,7 +6,7 @@ import PrivateLogin from './components/PrivateRoute/PrivateLogin';
 import Header from './components/Header/Header';
 import LandingPage from './pages/LandingPage/LandingPage';
 import AboutUs from './pages/AboutUs/AboutUs';
-import VarsityList from './pages/VarsityList/VarsityList';
+import UpdateVarsity from './pages/UpdateVarsity/UpdateVarsity';
 import WrongUrl from './pages/404/WrongUrl';
 import Footer from './components/Footer/Footer';
 import Login from './pages/Login/Login';
@@ -19,11 +19,21 @@ export const LoggedInUser = createContext()
 
 function App() {
   const [pageTitle, setPageTitle] = useState('Dyno Book')
-  const [examType, setExamType] = useState(null)
+  const [examType, setExamType] = useState('')
   const [loggedInUser, setLoggedInUser] = useState({})
   const [varsitiesInfo, setVarsitiesInfo] = useState([])
 
+  // changing page title
   useEffect(() => document.title = pageTitle, [pageTitle])
+
+  // load varsity info
+  useEffect(() => {
+    fetch("http://localhost:5000/api/varsities")
+      .then(res => res.json())
+      .then(data => setVarsitiesInfo(data.data))
+
+  }, [])
+
 
   return (
     <PageTitle.Provider value={[pageTitle, setPageTitle]}>
@@ -35,7 +45,7 @@ function App() {
             <Routes>
               <Route path='/' element={<LandingPage />} />
               <Route path='/about' element={<AboutUs />} />
-              <Route path='/varsities' element={<PrivateRoute><VarsityList /></PrivateRoute>} />
+              <Route path='/edit/varsity/:id' element={<PrivateRoute><UpdateVarsity /></PrivateRoute>} />
               <Route path='/ad-login' element={<PrivateLogin><Login /></PrivateLogin>} />
               <Route path='*' element={<WrongUrl />} />
             </Routes>

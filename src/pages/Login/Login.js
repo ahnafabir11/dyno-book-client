@@ -34,11 +34,11 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.data)
         if (data.data.length > 0) {
           navigate('/')
           setSnackbarOpen(false)
           setLoggedInUser(data.data[0])
+
         } else {
           setErrorMessage(data.response.message)
           setSnackbarOpen(true)
@@ -62,7 +62,7 @@ const Login = () => {
     <Container component="main" maxWidth="xs">
       <Alert severity="warning" sx={{ marginTop: 1 }}>
         <AlertTitle>Warning</AlertTitle>
-        This Login page is for admin users only. Don't try to LoginIn if you are not admin!
+        This page is only for admin user
       </Alert>
 
       <Box
