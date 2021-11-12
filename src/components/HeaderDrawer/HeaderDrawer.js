@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { VarsitiesInfo } from '../../App';
 import { Drawer, List, Box } from "@mui/material";
 import VarsityListItem from '../VarsityListIteam/VarsityListItem';
+import AddVarsityForm from '../AddVarsityForm/AddVarsityForm';
 
 const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
   const [varsitiesInfo] = useContext(VarsitiesInfo)
@@ -14,7 +15,7 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
     >
       <h6 className="h-14 font-bold border-b flex items-center justify-center">University List</h6>
       <List>
-        <Box sx={{minWidth: 300}} />
+        <Box sx={{ minWidth: 300 }} />
         {
           varsitiesInfo.map(varsity =>
             <VarsityListItem
@@ -26,6 +27,7 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
           )
         }
       </List>
+      {type === "edit" && <AddVarsityForm />}
     </Drawer>
   );
 };
