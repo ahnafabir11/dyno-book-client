@@ -90,7 +90,7 @@ const VarsityYearForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
 
   return (
     <div>
-      <h1 className="text-center mt-6 text-xl sm:text-3xl">ADD/REMOVE ACC YEAR</h1>
+      <h1 className="text-center mt-8 text-xl sm:text-3xl">ADD/REMOVE ACC YEAR</h1>
 
       <div className="mt-8">
         {

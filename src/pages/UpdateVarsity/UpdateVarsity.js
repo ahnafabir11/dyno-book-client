@@ -4,6 +4,7 @@ import { PageTitle } from '../../App';
 import { Alert, Snackbar } from '@mui/material';
 import VarsityNameForm from '../../components/VarsityAllForms/VarsityNameForm';
 import VarsityYearForm from '../../components/VarsityAllForms/VarsityYearForm';
+import VarsityUnitForm from '../../components/VarsityAllForms/VarsityUnitForm';
 
 const UpdateVarsity = () => {
   const { id } = useParams()
@@ -39,12 +40,25 @@ const UpdateVarsity = () => {
 
       />
 
-      <VarsityYearForm 
-        varsity={varsity}
-        setSnackbarOpen={setSnackbarOpen}
-        setAlertType={setAlertType}
-        setAlertMessage={setAlertMessage}
-      />
+      <div className="flex flex-col justify-center px-3 gap-3 sm:flex-row">
+        <div className="flex-1 flex justify-center">
+          <VarsityYearForm
+            varsity={varsity}
+            setSnackbarOpen={setSnackbarOpen}
+            setAlertType={setAlertType}
+            setAlertMessage={setAlertMessage}
+          />
+        </div>
+
+        <div className="flex-1 flex justify-center">
+          <VarsityUnitForm
+            varsity={varsity}
+            setSnackbarOpen={setSnackbarOpen}
+            setAlertType={setAlertType}
+            setAlertMessage={setAlertMessage}
+          />
+        </div>
+      </div>
 
       {/* wrong credential alert */}
       <Snackbar
