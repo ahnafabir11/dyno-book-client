@@ -32,7 +32,9 @@ const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
           fetch("http://localhost:5000/api/varsities")
             .then(res => res.json())
             .then(data => setVarsitiesInfo(data.data))
+            .catch(err => console.log(err.message))
         })
+        .catch(err => console.log(err.message))
 
       setSnackbarOpen(true)
       setAlertType('success')

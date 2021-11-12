@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { VarsitiesInfo } from '../../App';
-import { Drawer, List } from "@mui/material";
+import { Drawer, List, Box } from "@mui/material";
 import VarsityListItem from '../VarsityListIteam/VarsityListItem';
 
 const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
@@ -14,6 +14,7 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
     >
       <h6 className="h-14 font-bold border-b flex items-center justify-center">University List</h6>
       <List>
+        <Box sx={{minWidth: 300}} />
         {
           varsitiesInfo.map(varsity =>
             <VarsityListItem

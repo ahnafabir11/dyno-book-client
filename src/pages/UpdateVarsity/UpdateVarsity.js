@@ -20,6 +20,7 @@ const UpdateVarsity = () => {
     fetch(`http://localhost:5000/api/varsities/${id}`)
       .then(res => res.json())
       .then(data => setVarsity(data.data[0]))
+      .catch(err => console.log(err.message))
   }, [id])
 
   const handleSnackbarClose = (event, reason) => {
