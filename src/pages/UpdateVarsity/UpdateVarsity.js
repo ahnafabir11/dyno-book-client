@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { PageTitle } from '../../App';
 import { Alert, Snackbar } from '@mui/material';
-import VarsityNameForm from '../../components/VarsityNameForm/VarsityNameForm';
+import VarsityNameForm from '../../components/VarsityAllForms/VarsityNameForm';
+import VarsityYearForm from '../../components/VarsityAllForms/VarsityYearForm';
 
 const UpdateVarsity = () => {
   const { id } = useParams()
@@ -36,6 +37,13 @@ const UpdateVarsity = () => {
         setAlertType={setAlertType}
         setAlertMessage={setAlertMessage}
 
+      />
+
+      <VarsityYearForm 
+        varsity={varsity}
+        setSnackbarOpen={setSnackbarOpen}
+        setAlertType={setAlertType}
+        setAlertMessage={setAlertMessage}
       />
 
       {/* wrong credential alert */}

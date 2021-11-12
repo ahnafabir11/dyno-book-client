@@ -4,10 +4,13 @@ import { TextField, Button } from '@mui/material';
 
 const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessage }) => {
   const [, setVarsitiesInfo] = useContext(VarsitiesInfo)
+
+  const [updatedVarsity, setUpdatedVarsity] = useState({})
   const [name, setName] = useState("")
   const [shortName, setShortName] = useState("")
 
   useEffect(() => {
+    setUpdatedVarsity(varsity)
     setName("")
     setShortName("")
   }, [varsity])
@@ -32,13 +35,24 @@ const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
           fetch("http://localhost:5000/api/varsities")
             .then(res => res.json())
             .then(data => setVarsitiesInfo(data.data))
-            .catch(err => console.log(err.message))
+            .catch(err => {
+              setAlertMessage("something went wrong")
+              setAlertType("error")
+              setSnackbarOpen(true)
+            })
+          
+          setUpdatedVarsity(data.data[0])
+          setName('')
+          setShortName('')
+          setSnackbarOpen(true)
+          setAlertType('success')
+          setAlertMessage(data.response?.message)
         })
-        .catch(err => console.log(err.message))
-
-      setSnackbarOpen(true)
-      setAlertType('success')
-      setAlertMessage("Varsity Info Updated")
+        .catch(err => {
+          setAlertMessage("something went wrong")
+          setAlertType("error")
+          setSnackbarOpen(true)
+        })
 
     } else {
       setSnackbarOpen(true)
@@ -57,7 +71,7 @@ const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
         <TextField
           name="fname"
           autoComplete="off"
-          placeholder={varsity.name}
+          placeholder={updatedVarsity.name}
           value={name}
           onChange={(e) => setName(e.target.value)}
           sx={{ flexGrow: 1 }}
@@ -67,7 +81,7 @@ const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
         <TextField
           name="sname"
           autoComplete="off"
-          placeholder={varsity.shortName}
+          placeholder={updatedVarsity.shortName}
           value={shortName}
           onChange={(e) => setShortName(e.target.value)}
         />
