@@ -4,11 +4,12 @@ import { Routes, Route } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PrivateLogin from './components/PrivateRoute/PrivateLogin';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import LandingPage from './pages/LandingPage/LandingPage';
 import AboutUs from './pages/AboutUs/AboutUs';
 import UpdateVarsity from './pages/UpdateVarsity/UpdateVarsity';
+import AddQuestion from './pages/AddQuestion/AddQuestion';
 import WrongUrl from './pages/404/WrongUrl';
-import Footer from './components/Footer/Footer';
 import Login from './pages/Login/Login';
 
 // all context api
@@ -46,7 +47,10 @@ function App() {
             <Routes>
               <Route path='/' element={<LandingPage />} />
               <Route path='/about' element={<AboutUs />} />
-              <Route path='/edit/varsity/:id' element={<PrivateRoute><UpdateVarsity /></PrivateRoute>} />
+              {/* <Route path='/edit/varsity/:id' element={<PrivateRoute><UpdateVarsity /></PrivateRoute>} />
+              <Route path='/questions/create' element={<PrivateRoute><AddQuestion /></PrivateRoute>} /> */}
+              <Route path='/edit/varsity/:id' element={<UpdateVarsity />} />
+              <Route path='/questions/create' element={<AddQuestion />} />
               <Route path='/ad-login' element={<PrivateLogin><Login /></PrivateLogin>} />
               <Route path='*' element={<WrongUrl />} />
             </Routes>

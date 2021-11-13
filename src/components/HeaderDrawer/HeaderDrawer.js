@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { VarsitiesInfo } from '../../App';
 import { Drawer, List, Box, Button } from "@mui/material";
 import VarsityListItem from '../VarsityListIteam/VarsityListItem';
 import AddVarsityForm from '../AddVarsityForm/AddVarsityForm';
 
 const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
+  const navigate = useNavigate()
+
   const [varsitiesInfo] = useContext(VarsitiesInfo)
 
   return (
@@ -30,7 +33,10 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
       {type === "edit" &&
         <div className="flex flex-col gap-2 p-3 border-t-2">
           <AddVarsityForm />
-          <Button variant="contained">
+          <Button 
+          variant="contained"
+          onClick={() => navigate('/questions/create')}
+          >
             add new question
           </Button>
         </div>

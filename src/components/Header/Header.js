@@ -49,7 +49,7 @@ const Header = () => {
         <Link to="/about" className="text-blue-500 font-medium mr-4">About Us</Link>
 
         {
-          loggedInUser._id &&
+          !loggedInUser._id &&
           <>
             <IconButton
               size="large"
