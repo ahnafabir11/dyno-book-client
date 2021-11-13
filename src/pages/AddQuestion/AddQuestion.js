@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { VarsitiesInfo } from '../../App';
-import { Button } from '@mui/material';
+import { PageTitle, VarsitiesInfo } from '../../App';
+import { Button, Snackbar, Alert } from '@mui/material';
 import VarsityInfoForm from '../../components/AllQuestionForms/VarsityInfoForm';
 import QuestionForm from './../../components/AllQuestionForms/QuestionForm';
+import OptionForm from './../../components/AllQuestionForms/OptionForm';
 
 const AddQuestion = () => {
+  const [, setPageTitle] = useContext(PageTitle)
   const [varsitiesInfo] = useContext(VarsitiesInfo)
 
   const [varsityName, setVarsityName] = useState('')
@@ -13,8 +15,15 @@ const AddQuestion = () => {
   const [questionBan, setQuestionBan] = useState('')
   const [questionEng, setQuestionEng] = useState('')
   const [questionBng, setQuestionBng] = useState('')
+  const [option, setOption] = useState([])
+  const [answer, setAnswer] = useState({})
   const [varsityYears, setVarsityYears] = useState([])
   const [varsityUnits, setVarsityUnits] = useState([])
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [alertType, setAlertType] = useState('error')
+  const [alertMessage, setAlertMessage] = useState('')
+
+  useEffect(() => setPageTitle('Add New Question | Dyno Book'))
 
   useEffect(() => {
     const varsity = varsitiesInfo.filter(varsity => varsity.name === varsityName)
@@ -40,7 +49,16 @@ const AddQuestion = () => {
       question = {...question, ban: questionBan}
       questionData = { ...questionData, question }
     }
+
+    if(option.length > 3) questionData = {...questionData, option}
+    if(answer !== {}) questionData = {...questionData, answer}
+
     console.log(questionData)
+  }
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return
+    setSnackbarOpen(false)
   }
 
   return (
@@ -73,6 +91,17 @@ const AddQuestion = () => {
           setQuestionBng={setQuestionBng}
         />
 
+        {/* options */}
+        <OptionForm
+          option={option}
+          setOption={setOption}
+          setSnackbarOpen={setSnackbarOpen}
+          setAlertType={setAlertType}
+          setAlertMessage={setAlertMessage}
+          answer={answer}
+          setAnswer={setAnswer}
+        />
+
         <Button
           variant="contained"
           type="submit"
@@ -80,6 +109,16 @@ const AddQuestion = () => {
           create question
         </Button>
       </form>
+
+      {/* wrong credential alert */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={5000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert severity={alertType} onClose={handleSnackbarClose}>{alertMessage}</Alert>
+      </Snackbar>
     </div>
   );
 };

@@ -15,6 +15,7 @@ const QuestionForm = (props) => {
         <TextField
           required
           fullWidth
+          size="small"
           value={questionBan}
           placeholder="question in bangla"
           onChange={(e)=> setQuestionBan(e.target.value)}
@@ -22,6 +23,7 @@ const QuestionForm = (props) => {
 
         <TextField
           fullWidth
+          size="small"
           value={questionEng}
           placeholder="question in english (optional)"
           onChange={(e) => setQuestionEng(e.target.value)}
@@ -29,6 +31,7 @@ const QuestionForm = (props) => {
 
         <TextField
           fullWidth
+          size="small"
           value={questionBng}
           placeholder="question in banglish (optional)"
           onChange={(e) => setQuestionBng(e.target.value)}

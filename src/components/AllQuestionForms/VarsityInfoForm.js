@@ -9,15 +9,18 @@ const VarsityInfoForm = (props) => {
     unit, setUnit,
     varsityYears, varsityUnits
   } = props;
-  
+
   const [varsitiesInfo] = useContext(VarsitiesInfo)
 
   return (
     <div className="mb-5">
       <h2 className="text-lg mb-3">University Information</h2>
-      
+
       <div className="flex flex-col gap-3 sm:flex-row">
-        <FormControl fullWidth>
+        <FormControl
+          fullWidth
+          size="small"
+        >
           <InputLabel>Select University</InputLabel>
           <Select
             required
@@ -40,7 +43,10 @@ const VarsityInfoForm = (props) => {
 
         {
           varsityName !== "" &&
-          <FormControl fullWidth>
+          <FormControl 
+            fullWidth
+            size="small"
+          >
             <InputLabel>Select Year</InputLabel>
             <Select
               required
@@ -64,7 +70,10 @@ const VarsityInfoForm = (props) => {
 
         {
           accYear !== "" &&
-          <FormControl fullWidth>
+          <FormControl
+            fullWidth
+            size="small"
+          >
             <InputLabel>Select Unit</InputLabel>
             <Select
               required
