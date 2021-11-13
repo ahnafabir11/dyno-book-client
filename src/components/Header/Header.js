@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { ExamTypeContext } from "../../App";
 import { LoggedInUser } from './../../App';
-import { IconButton, Typography, Button } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import HeaderDrawer from '../../components/HeaderDrawer/HeaderDrawer';
@@ -56,16 +56,10 @@ const Header = () => {
               edge="start"
               aria-label="open drawer"
               onClick={() => setOpenVersityListDrawer(true)}
-              sx={{ mr: { xs: 0, md: 1 } }}
+              sx={{ mr: { xs: 0, md: 2 } }}
             >
               <FiEdit color="#000" />
             </IconButton>
-
-            <div className="mr-4">
-              <Button variant="contained">
-                <Typography noWrap>add new</Typography>
-              </Button>
-            </div>
           </>
         }
       </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { VarsitiesInfo } from '../../App';
-import { Drawer, List, Box } from "@mui/material";
+import { Drawer, List, Box, Button } from "@mui/material";
 import VarsityListItem from '../VarsityListIteam/VarsityListItem';
 import AddVarsityForm from '../AddVarsityForm/AddVarsityForm';
 
@@ -27,7 +27,14 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
           )
         }
       </List>
-      {type === "edit" && <AddVarsityForm />}
+      {type === "edit" &&
+        <div className="flex flex-col gap-2 p-3 border-t-2">
+          <AddVarsityForm />
+          <Button variant="contained">
+            add new question
+          </Button>
+        </div>
+      }
     </Drawer>
   );
 };

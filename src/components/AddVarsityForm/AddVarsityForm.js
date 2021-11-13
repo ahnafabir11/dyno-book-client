@@ -59,7 +59,7 @@ const AddVarsityForm = () => {
   return (
     <form
       onSubmit={addNewVarsity}
-      className="max-w-xs p-3 flex flex-col gap-2 border-t-2"
+      className="max-w-xs flex flex-col gap-2"
     >
       <TextField
         fullWidth
