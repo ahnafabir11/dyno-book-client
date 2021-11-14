@@ -5,6 +5,7 @@ import VarsityInfoForm from '../../components/AllQuestionForms/VarsityInfoForm';
 import QuestionForm from './../../components/AllQuestionForms/QuestionForm';
 import OptionForm from './../../components/AllQuestionForms/OptionForm';
 import ExplanationForm from '../../components/AllQuestionForms/ExplanationForm';
+import CategoryForm from '../../components/AllQuestionForms/CategoryForm';
 
 const AddQuestion = () => {
   const [, setPageTitle] = useContext(PageTitle)
@@ -20,6 +21,7 @@ const AddQuestion = () => {
   const [answer, setAnswer] = useState({})
   const [explainBan, setExplainBan] = useState('')
   const [explainEng, setExplainEng] = useState('')
+  const [category, setCategory] = useState([])
   const [varsityYears, setVarsityYears] = useState([])
   const [varsityUnits, setVarsityUnits] = useState([])
   const [snackbarOpen, setSnackbarOpen] = useState(false)
@@ -60,6 +62,7 @@ const AddQuestion = () => {
     }
     if (option.length > 3) questionData = { ...questionData, option }
     if (answer !== {}) questionData = { ...questionData, answer }
+    questionData = { ...questionData, category }
 
     console.log(questionData)
   }
@@ -116,6 +119,12 @@ const AddQuestion = () => {
           setExplainBan={setExplainBan}
           explainEng={explainEng}
           setExplainEng={setExplainEng}
+        />
+
+        {/* category */}
+        <CategoryForm 
+          category={category}
+          setCategory={setCategory}
         />
 
         <Button
