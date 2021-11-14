@@ -23,7 +23,7 @@ const VarsityInfoForm = (props) => {
         >
           <InputLabel>Select University</InputLabel>
           <Select
-            required
+            // required
             value={varsityName}
             label="Select University"
             onChange={(e) => setVarsityName(e.target.value)}
@@ -49,7 +49,7 @@ const VarsityInfoForm = (props) => {
           >
             <InputLabel>Select Year</InputLabel>
             <Select
-              required
+              // required
               value={accYear}
               label="Select Year"
               onChange={(e) => setAccYear(e.target.value)}
@@ -76,7 +76,7 @@ const VarsityInfoForm = (props) => {
           >
             <InputLabel>Select Unit</InputLabel>
             <Select
-              required
+              // required
               value={unit}
               label="Select Unit"
               onChange={(e) => setUnit(e.target.value)}

@@ -42,29 +42,102 @@ const AddQuestion = () => {
   const createQuestion = (e) => {
     e.preventDefault()
     let questionData = {}
-    let question = {
-      eng: questionEng,
-      bng: questionBng,
-    }
-    let explanation = {
-      ban: explainBan,
-      eng: explainEng
-    }
 
+    let explanation = { ban: explainBan, eng: explainEng }
     questionData = { ...questionData, explanation }
 
-    if (varsityName !== '') questionData = { ...questionData, varsityName }
-    if (accYear !== '') questionData = { ...questionData, accYear }
-    if (unit !== '') questionData = { ...questionData, unit }
+    if (category.length > 0) {
+      questionData = { ...questionData, category }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('please select 1 category')
+      setSnackbarOpen(true)
+    }
+
+    if (Object.keys(answer).length > 0) {
+      questionData = { ...questionData, answer }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('please select an answer')
+      setSnackbarOpen(true)
+    }
+
+    if (option.length > 3) {
+      questionData = { ...questionData, options: option }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('minimum 4 opiton required')
+      setSnackbarOpen(true)
+    }
+
     if (questionBan !== '') {
+      let question = { eng: questionEng, bng: questionBng }
       question = { ...question, ban: questionBan }
       questionData = { ...questionData, question }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('question in bangla required')
+      setSnackbarOpen(true)
     }
-    if (option.length > 3) questionData = { ...questionData, option }
-    if (answer !== {}) questionData = { ...questionData, answer }
-    questionData = { ...questionData, category }
 
-    console.log(questionData)
+    if (unit !== '') {
+      questionData = { ...questionData, unit }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('select unit')
+      setSnackbarOpen(true)
+    }
+
+    if (accYear !== '') {
+      questionData = { ...questionData, accYear }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('selelct acc year')
+      setSnackbarOpen(true)
+    }
+
+    if (varsityName !== '') {
+      questionData = { ...questionData, varsityName }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('select university')
+      setSnackbarOpen(true)
+    }
+
+    const questiondataKeys = ["varsityName", "accYear", "unit", "question", "options", "answer", "explanation", "category"]
+    const hasQuestionDataKeys = Object.keys(questionData)
+
+    const isValid = questiondataKeys.every((val) => hasQuestionDataKeys.includes(val))
+
+    if (isValid) {
+      fetch("http://localhost:5000/api/questions/add", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(questionData)
+      })
+        .then(res => res.json())
+        .then(data => {
+          setVarsityName('')
+          setAccYear('')
+          setUnit('')
+          setQuestionBan('')
+          setQuestionEng('')
+          setQuestionBng('')
+          setOption([])
+          setAnswer({})
+          setExplainBan('')
+          setExplainEng('')
+          setCategory([])
+          setAlertType('success')
+          setAlertMessage(data.response?.message)
+          setSnackbarOpen(true)
+        })
+        .catch(err => {
+          setAlertType('error')
+          setAlertMessage('something went wrong')
+          setSnackbarOpen(true)
+        })
+    }
   }
 
   const handleSnackbarClose = (event, reason) => {
@@ -122,7 +195,7 @@ const AddQuestion = () => {
         />
 
         {/* category */}
-        <CategoryForm 
+        <CategoryForm
           category={category}
           setCategory={setCategory}
         />

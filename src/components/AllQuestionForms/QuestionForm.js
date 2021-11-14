@@ -13,7 +13,7 @@ const QuestionForm = (props) => {
 
       <div className="flex flex-col gap-3">
         <TextField
-          required
+          // required
           fullWidth
           size="small"
           value={questionBan}
