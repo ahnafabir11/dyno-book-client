@@ -120,9 +120,6 @@ const AddQuestion = () => {
       })
         .then(res => res.json())
         .then(data => {
-          setVarsityName('')
-          setAccYear('')
-          setUnit('')
           setQuestionBan('')
           setQuestionEng('')
           setQuestionBng('')
@@ -130,7 +127,6 @@ const AddQuestion = () => {
           setAnswer({})
           setExplainBan('')
           setExplainEng('')
-          setCategory([])
           setAlertType('success')
           setAlertMessage(data.response?.message)
           setSnackbarOpen(true)

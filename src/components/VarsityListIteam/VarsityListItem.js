@@ -13,22 +13,9 @@ const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
     setDrawerOpen(false)
   }
 
-  const questionByNameAndYear = (name, year) => {
-    const filterValue = {
-      varsityName: name,
-      accYear: year
-    }
-
-    fetch("http://localhost:5000/api/questions/filter", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(filterValue)
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
-      .catch(err => console.log(err.message))
+  const showQuestions = (name, year) => {
+    navigate(`/question/${name}/${year}`)
+    setDrawerOpen(false)
   }
 
   return (
@@ -49,7 +36,7 @@ const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
                 varsity.accYear.map(year =>
                   <ListItemButton
                     key={year._id}
-                    onClick={()=> questionByNameAndYear(varsity.name, `${year.start}-${year.end}`)}
+                    onClick={() => showQuestions(varsity.name, `${year.start}-${year.end}`)}
                   >
                     {year.start} - {year.end}
                   </ListItemButton>
