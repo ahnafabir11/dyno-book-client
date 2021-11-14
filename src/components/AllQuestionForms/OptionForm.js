@@ -56,6 +56,7 @@ const OptionForm = (props) => {
               className="flex items-center gap-3"
             >
               <TextField
+                multiline
                 disabled
                 fullWidth
                 size="small"
@@ -63,6 +64,7 @@ const OptionForm = (props) => {
               />
 
               <TextField
+                multiline
                 disabled
                 fullWidth
                 size="small"
@@ -88,6 +90,7 @@ const OptionForm = (props) => {
 
         <div className="flex items-center gap-3">
           <TextField
+            multiline
             fullWidth
             size="small"
             value={optionBan}
@@ -96,6 +99,7 @@ const OptionForm = (props) => {
           />
 
           <TextField
+            multiline
             fullWidth
             size="small"
             value={optionEng}

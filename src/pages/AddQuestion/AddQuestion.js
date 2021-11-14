@@ -17,6 +17,7 @@ const AddQuestion = () => {
   const [questionBan, setQuestionBan] = useState('')
   const [questionEng, setQuestionEng] = useState('')
   const [questionBng, setQuestionBng] = useState('')
+  const [questionPassage, setQuestionPassage] = useState('')
   const [option, setOption] = useState([])
   const [answer, setAnswer] = useState({})
   const [explainBan, setExplainBan] = useState('')
@@ -45,6 +46,8 @@ const AddQuestion = () => {
 
     let explanation = { ban: explainBan, eng: explainEng }
     questionData = { ...questionData, explanation }
+
+    questionData = { ...questionData, questionPassage}
 
     if (category.length > 0) {
       questionData = { ...questionData, category }
@@ -104,7 +107,7 @@ const AddQuestion = () => {
       setSnackbarOpen(true)
     }
 
-    const questiondataKeys = ["varsityName", "accYear", "unit", "question", "options", "answer", "explanation", "category"]
+    const questiondataKeys = ["varsityName", "accYear", "unit", "question", "options", "answer", "explanation", "category", "questionPassage"]
     const hasQuestionDataKeys = Object.keys(questionData)
 
     const isValid = questiondataKeys.every((val) => hasQuestionDataKeys.includes(val))
@@ -167,6 +170,8 @@ const AddQuestion = () => {
 
         {/* question in all language */}
         <QuestionForm
+          questionPassage={questionPassage}
+          setQuestionPassage={setQuestionPassage}
           questionBan={questionBan}
           setQuestionBan={setQuestionBan}
           questionEng={questionEng}

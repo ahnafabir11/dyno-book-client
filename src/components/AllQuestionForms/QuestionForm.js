@@ -3,6 +3,7 @@ import { TextField } from '@mui/material';
 
 const QuestionForm = (props) => {
   const {
+    questionPassage, setQuestionPassage,
     questionBan, setQuestionBan,
     questionEng, setQuestionEng,
     questionBng, setQuestionBng
@@ -13,7 +14,15 @@ const QuestionForm = (props) => {
 
       <div className="flex flex-col gap-3">
         <TextField
-          // required
+          multiline
+          minRows={2}
+          value={questionPassage}
+          label="Passage (optional)"
+          onChange={(e) => setQuestionPassage(e.target.value)}
+        />
+
+        <TextField
+          multiline
           fullWidth
           size="small"
           value={questionBan}
@@ -22,6 +31,7 @@ const QuestionForm = (props) => {
         />
 
         <TextField
+          multiline
           fullWidth
           size="small"
           value={questionEng}
@@ -30,6 +40,7 @@ const QuestionForm = (props) => {
         />
 
         <TextField
+          multiline
           fullWidth
           size="small"
           value={questionBng}

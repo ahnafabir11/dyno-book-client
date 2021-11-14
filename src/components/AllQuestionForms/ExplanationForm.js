@@ -14,7 +14,7 @@ const ExplanationForm = (props) => {
       <div className="flex flex-col gap-3">
         <TextField
           multiline
-          maxRows={3}
+          minRows={2}
           value={explainBan}
           label="Bangla Explanation (optional)"
           onChange={(e) => setExplainBan(e.target.value)}
@@ -22,7 +22,7 @@ const ExplanationForm = (props) => {
 
         <TextField
           multiline
-          maxRows={3}
+          minRows={2}
           value={explainEng}
           label="English Explanation (optional)"
           onChange={(e) => setExplainEng(e.target.value)}
