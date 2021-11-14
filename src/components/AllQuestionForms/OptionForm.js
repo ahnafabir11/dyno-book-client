@@ -91,7 +91,7 @@ const OptionForm = (props) => {
             fullWidth
             size="small"
             value={optionBan}
-            placeholder={`Option ${option.length + 1} Bangla`}
+            label={`Option ${option.length + 1} Bangla`}
             onChange={(e) => setOptionBan(e.target.value)}
           />
 
@@ -99,7 +99,7 @@ const OptionForm = (props) => {
             fullWidth
             size="small"
             value={optionEng}
-            placeholder={`Option ${option.length + 1} English (optional)`}
+            label={`Option ${option.length + 1} English (optional)`}
             onChange={(e) => setOptionEng(e.target.value)}
           />
 

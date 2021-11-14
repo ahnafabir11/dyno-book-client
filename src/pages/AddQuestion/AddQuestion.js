@@ -4,6 +4,7 @@ import { Button, Snackbar, Alert } from '@mui/material';
 import VarsityInfoForm from '../../components/AllQuestionForms/VarsityInfoForm';
 import QuestionForm from './../../components/AllQuestionForms/QuestionForm';
 import OptionForm from './../../components/AllQuestionForms/OptionForm';
+import ExplanationForm from '../../components/AllQuestionForms/ExplanationForm';
 
 const AddQuestion = () => {
   const [, setPageTitle] = useContext(PageTitle)
@@ -17,6 +18,8 @@ const AddQuestion = () => {
   const [questionBng, setQuestionBng] = useState('')
   const [option, setOption] = useState([])
   const [answer, setAnswer] = useState({})
+  const [explainBan, setExplainBan] = useState('')
+  const [explainEng, setExplainEng] = useState('')
   const [varsityYears, setVarsityYears] = useState([])
   const [varsityUnits, setVarsityUnits] = useState([])
   const [snackbarOpen, setSnackbarOpen] = useState(false)
@@ -35,23 +38,28 @@ const AddQuestion = () => {
   }, [varsityName, varsitiesInfo])
 
   const createQuestion = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     let questionData = {}
     let question = {
       eng: questionEng,
       bng: questionBng,
     }
+    let explanation = {
+      ban: explainBan,
+      eng: explainEng
+    }
+
+    questionData = { ...questionData, explanation }
 
     if (varsityName !== '') questionData = { ...questionData, varsityName }
     if (accYear !== '') questionData = { ...questionData, accYear }
     if (unit !== '') questionData = { ...questionData, unit }
     if (questionBan !== '') {
-      question = {...question, ban: questionBan}
+      question = { ...question, ban: questionBan }
       questionData = { ...questionData, question }
     }
-
-    if(option.length > 3) questionData = {...questionData, option}
-    if(answer !== {}) questionData = {...questionData, answer}
+    if (option.length > 3) questionData = { ...questionData, option }
+    if (answer !== {}) questionData = { ...questionData, answer }
 
     console.log(questionData)
   }
@@ -100,6 +108,14 @@ const AddQuestion = () => {
           setAlertMessage={setAlertMessage}
           answer={answer}
           setAnswer={setAnswer}
+        />
+
+        {/* explaination */}
+        <ExplanationForm
+          explainBan={explainBan}
+          setExplainBan={setExplainBan}
+          explainEng={explainEng}
+          setExplainEng={setExplainEng}
         />
 
         <Button

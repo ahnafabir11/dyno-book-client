@@ -33,9 +33,10 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
       {type === "edit" &&
         <div className="flex flex-col gap-2 p-3 border-t-2">
           <AddVarsityForm />
-          <Button 
-          variant="contained"
-          onClick={() => navigate('/questions/create')}
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() => navigate('/questions/create')}
           >
             add new question
           </Button>
