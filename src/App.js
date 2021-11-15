@@ -48,7 +48,7 @@ function App() {
             <Routes>
               <Route path='/' element={<LandingPage />} />
               <Route path='/about' element={<AboutUs />} />
-              <Route path='/question/:varsityName/:accYear' element={<AdmissionQuestion />} />
+              <Route path='/question/:varsityName/:accYear/:unit' element={<AdmissionQuestion />} />
               <Route path='/edit/varsity/:id' element={<PrivateRoute><UpdateVarsity /></PrivateRoute>} />
               <Route path='/questions/create' element={<PrivateRoute><AddQuestion /></PrivateRoute>} />
               <Route path='/ad-login' element={<PrivateLogin><Login /></PrivateLogin>} />

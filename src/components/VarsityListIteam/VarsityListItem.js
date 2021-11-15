@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ListItemButton, ListItemText, Collapse, List } from "@mui/material";
-import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { ListItemButton, ListItemText, Collapse, List } from "@mui/material";
+import VarsityYearItem from '../VarsityYearItem/VarsitYearItem';
+import { MdExpandMore, MdExpandLess } from 'react-icons/md';
 
 const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
   const navigate = useNavigate()
@@ -10,11 +11,6 @@ const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
 
   const editVarsityInfo = (id) => {
     navigate(`/edit/varsity/${id}`)
-    setDrawerOpen(false)
-  }
-
-  const showQuestions = (name, year) => {
-    navigate(`/question/${name}/${year}`)
     setDrawerOpen(false)
   }
 
@@ -34,12 +30,12 @@ const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
             <List sx={{ pl: 4 }}>
               {
                 varsity.accYear.map(year =>
-                  <ListItemButton
+                  <VarsityYearItem 
                     key={year._id}
-                    onClick={() => showQuestions(varsity.name, `${year.start}-${year.end}`)}
-                  >
-                    {year.start} - {year.end}
-                  </ListItemButton>
+                    year={year}
+                    varsity={varsity}
+                    setDrawerOpen={setDrawerOpen}
+                  />
                 )
               }
             </List>
