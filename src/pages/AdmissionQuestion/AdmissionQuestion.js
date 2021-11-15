@@ -93,32 +93,35 @@ const AdmissionQuestion = () => {
                 .map((question, index) => (
                   <div key={question._id} className="mb-5">
                     <h1 className="mb-1 text-lg md:text-2xl lg:text-3xl font-medium ">
-                      {index + 1}. {question.question.ban}
+                      {index + 1}. {question.question}
                     </h1>
                     {question.options.map((option, index) => (
                       <h3
-                        key={option._id}
+                        key={index}
                         className={
                           showAnswer
-                            ? question.answer.ban === option.ban
+                            ? question.answer === option
                               ? "pl-4 md:text-lg lg:text-xl text-indigo-500"
                               : "pl-4 md:text-lg lg:text-xl"
                             : "pl-4 md:text-lg lg:text-xl"
                         }
                       >
-                        {index + 1}) {option.ban}
+                        {index + 1}) {option}
                       </h3>
                     ))}
-                    {question.explanation.ban !== "" && (
-                      <Accordion sx={{ marginTop: 1 }}>
-                        <AccordionSummary expandIcon={<MdExpandMore />}>
-                          <Typography>Explanation</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Typography>{question.explanation.ban}</Typography>
-                        </AccordionDetails>
-                      </Accordion>
-                    )}
+
+                    <Accordion sx={{ marginTop: 1 }}>
+                      <AccordionSummary expandIcon={<MdExpandMore />}>
+                        <Typography>Explanation</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography>
+                          {
+                            question.explanation === "" ? "No Explanation Available" : question.explanation
+                          }
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
                   </div>
                 ))}
             </div>
