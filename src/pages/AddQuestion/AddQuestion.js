@@ -14,14 +14,11 @@ const AddQuestion = () => {
   const [varsityName, setVarsityName] = useState('')
   const [accYear, setAccYear] = useState('')
   const [unit, setUnit] = useState('')
-  const [questionBan, setQuestionBan] = useState('')
-  const [questionEng, setQuestionEng] = useState('')
-  const [questionBng, setQuestionBng] = useState('')
+  const [question, setQuestion] = useState('')
   const [questionPassage, setQuestionPassage] = useState('')
-  const [option, setOption] = useState([])
-  const [answer, setAnswer] = useState({})
-  const [explainBan, setExplainBan] = useState('')
-  const [explainEng, setExplainEng] = useState('')
+  const [options, setOptions] = useState([])
+  const [answer, setAnswer] = useState('')
+  const [explanation, setExplanation] = useState('')
   const [category, setCategory] = useState([])
   const [varsityYears, setVarsityYears] = useState([])
   const [varsityUnits, setVarsityUnits] = useState([])
@@ -43,11 +40,8 @@ const AddQuestion = () => {
   const createQuestion = (e) => {
     e.preventDefault()
     let questionData = {}
-
-    let explanation = { ban: explainBan, eng: explainEng }
-    questionData = { ...questionData, explanation }
-
     questionData = { ...questionData, questionPassage}
+    questionData = { ...questionData, explanation }
 
     if (category.length > 0) {
       questionData = { ...questionData, category }
@@ -65,21 +59,19 @@ const AddQuestion = () => {
       setSnackbarOpen(true)
     }
 
-    if (option.length > 3) {
-      questionData = { ...questionData, options: option }
+    if (options.length > 3) {
+      questionData = { ...questionData, options }
     } else {
       setAlertType('warning')
       setAlertMessage('minimum 4 opiton required')
       setSnackbarOpen(true)
     }
 
-    if (questionBan !== '') {
-      let question = { eng: questionEng, bng: questionBng }
-      question = { ...question, ban: questionBan }
+    if (question !== '') {
       questionData = { ...questionData, question }
     } else {
       setAlertType('warning')
-      setAlertMessage('question in bangla required')
+      setAlertMessage('question is required')
       setSnackbarOpen(true)
     }
 
@@ -120,13 +112,10 @@ const AddQuestion = () => {
       })
         .then(res => res.json())
         .then(data => {
-          setQuestionBan('')
-          setQuestionEng('')
-          setQuestionBng('')
-          setOption([])
-          setAnswer({})
-          setExplainBan('')
-          setExplainEng('')
+          setQuestion('')
+          setOptions([])
+          setAnswer('')
+          setExplanation('')
           setAlertType('success')
           setAlertMessage(data.response?.message)
           setSnackbarOpen(true)
@@ -168,18 +157,14 @@ const AddQuestion = () => {
         <QuestionForm
           questionPassage={questionPassage}
           setQuestionPassage={setQuestionPassage}
-          questionBan={questionBan}
-          setQuestionBan={setQuestionBan}
-          questionEng={questionEng}
-          setQuestionEng={setQuestionEng}
-          questionBng={questionBng}
-          setQuestionBng={setQuestionBng}
+          question={question}
+          setQuestion={setQuestion}
         />
 
         {/* options */}
         <OptionForm
-          option={option}
-          setOption={setOption}
+          options={options}
+          setOptions={setOptions}
           setSnackbarOpen={setSnackbarOpen}
           setAlertType={setAlertType}
           setAlertMessage={setAlertMessage}
@@ -189,10 +174,8 @@ const AddQuestion = () => {
 
         {/* explaination */}
         <ExplanationForm
-          explainBan={explainBan}
-          setExplainBan={setExplainBan}
-          explainEng={explainEng}
-          setExplainEng={setExplainEng}
+          explanation={explanation}
+          setExplanation={setExplanation}
         />
 
         {/* category */}

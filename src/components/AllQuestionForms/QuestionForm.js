@@ -4,13 +4,11 @@ import { TextField } from '@mui/material';
 const QuestionForm = (props) => {
   const {
     questionPassage, setQuestionPassage,
-    questionBan, setQuestionBan,
-    questionEng, setQuestionEng,
-    questionBng, setQuestionBng
+    question, setQuestion,
   } = props;
   return (
     <div className="mb-5">
-      <h2 className="text-lg mb-3">University Information</h2>
+      <h2 className="text-lg mb-3">Question & Passage</h2>
 
       <div className="flex flex-col gap-3">
         <TextField
@@ -25,27 +23,9 @@ const QuestionForm = (props) => {
           multiline
           fullWidth
           size="small"
-          value={questionBan}
-          label="question in bangla"
-          onChange={(e)=> setQuestionBan(e.target.value)}
-        />
-
-        <TextField
-          multiline
-          fullWidth
-          size="small"
-          value={questionEng}
-          label="question in english (optional)"
-          onChange={(e) => setQuestionEng(e.target.value)}
-        />
-
-        <TextField
-          multiline
-          fullWidth
-          size="small"
-          value={questionBng}
-          label="question in banglish (optional)"
-          onChange={(e) => setQuestionBng(e.target.value)}
+          value={question}
+          label="Question"
+          onChange={(e) => setQuestion(e.target.value)}
         />
       </div>
 

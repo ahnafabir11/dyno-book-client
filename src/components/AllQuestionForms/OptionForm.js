@@ -7,31 +7,21 @@ import { IoCheckmarkDoneSharp } from 'react-icons/io5';
 
 const OptionForm = (props) => {
   const {
-    option, setOption,
+    options, setOptions,
     answer, setAnswer,
     setSnackbarOpen,
     setAlertType,
     setAlertMessage
   } = props;
 
-  const [optionBan, setOptionBan] = useState('')
-  const [optionEng, setOptionEng] = useState('')
+  const [option, setOption] = useState('')
 
   const addNewOption = () => {
-    if (option.length <= 4) {
-      let newOption = { eng: optionEng }
-
-      if (optionBan !== '') newOption = { ...newOption, ban: optionBan }
-      const isValid = Object.keys(newOption).length
-
-      if (isValid === 2) {
-        setOption([...option, newOption])
-        setOptionBan('')
-        setOptionEng('')
-      }
+    if (options.length <= 4) {
+      setOptions([...options, option])
+      setOption('')
     } else {
-      setOptionBan('')
-      setOptionEng('')
+      setOption('')
       setAlertType('warning')
       setAlertMessage('cannot add more than 5')
       setSnackbarOpen(true)
@@ -40,8 +30,8 @@ const OptionForm = (props) => {
   }
 
   const deleteOption = (index) => {
-    const newOption = option.filter((item, idx) => idx !== index)
-    setOption(newOption)
+    const newOption = options.filter((item, idx) => idx !== index)
+    setOptions(newOption)
   }
 
   return (
@@ -50,25 +40,17 @@ const OptionForm = (props) => {
 
       <div className="flex flex-col gap-3">
         {
-          option?.map((item, index) =>
+          options?.map((option, index) =>
             <div
               key={index}
-              className="flex items-center gap-3"
+              className="flex options-center gap-3"
             >
               <TextField
                 multiline
                 disabled
                 fullWidth
                 size="small"
-                value={item.ban}
-              />
-
-              <TextField
-                multiline
-                disabled
-                fullWidth
-                size="small"
-                value={item.eng}
+                value={option}
               />
 
               <IconButton
@@ -80,9 +62,9 @@ const OptionForm = (props) => {
 
               <IconButton
                 color="success"
-                onClick={() => setAnswer(item)}
+                onClick={() => setAnswer(option)}
               >
-                {answer === item ? <IoCheckmarkDoneSharp/> : <ImCheckmark />}
+                {answer === option ? <IoCheckmarkDoneSharp /> : <ImCheckmark />}
               </IconButton>
             </div>
           )
@@ -93,18 +75,9 @@ const OptionForm = (props) => {
             multiline
             fullWidth
             size="small"
-            value={optionBan}
-            label={`Option ${option.length + 1} Bangla`}
-            onChange={(e) => setOptionBan(e.target.value)}
-          />
-
-          <TextField
-            multiline
-            fullWidth
-            size="small"
-            value={optionEng}
-            label={`Option ${option.length + 1} English (optional)`}
-            onChange={(e) => setOptionEng(e.target.value)}
+            value={option}
+            label={`Option ${options.length + 1}`}
+            onChange={(e) => setOption(e.target.value)}
           />
 
           <IconButton

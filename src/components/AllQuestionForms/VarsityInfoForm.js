@@ -23,7 +23,6 @@ const VarsityInfoForm = (props) => {
         >
           <InputLabel>Select University</InputLabel>
           <Select
-            // required
             value={varsityName}
             label="Select University"
             onChange={(e) => setVarsityName(e.target.value)}
@@ -41,59 +40,51 @@ const VarsityInfoForm = (props) => {
           </Select>
         </FormControl>
 
-        {
-          varsityName !== "" &&
-          <FormControl 
-            fullWidth
-            size="small"
+        <FormControl
+          fullWidth
+          size="small"
+        >
+          <InputLabel>Select Year</InputLabel>
+          <Select
+            value={accYear}
+            label="Select Year"
+            onChange={(e) => setAccYear(e.target.value)}
           >
-            <InputLabel>Select Year</InputLabel>
-            <Select
-              // required
-              value={accYear}
-              label="Select Year"
-              onChange={(e) => setAccYear(e.target.value)}
-            >
-              {
-                varsityYears?.map(year =>
-                  <MenuItem
-                    key={year._id}
-                    value={`${year.start}-${year.end}`}
-                  >
-                    {year.start} - {year.end}
-                  </MenuItem>
-                )
-              }
-            </Select>
-          </FormControl>
-        }
+            {
+              varsityYears?.map(year =>
+                <MenuItem
+                  key={year._id}
+                  value={`${year.start}-${year.end}`}
+                >
+                  {year.start} - {year.end}
+                </MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
 
-        {
-          accYear !== "" &&
-          <FormControl
-            fullWidth
-            size="small"
+        <FormControl
+          fullWidth
+          size="small"
+        >
+          <InputLabel>Select Unit</InputLabel>
+          <Select
+            value={unit}
+            label="Select Unit"
+            onChange={(e) => setUnit(e.target.value)}
           >
-            <InputLabel>Select Unit</InputLabel>
-            <Select
-              // required
-              value={unit}
-              label="Select Unit"
-              onChange={(e) => setUnit(e.target.value)}
-            >
-              {
-                varsityUnits?.map(unit =>
-                  <MenuItem
-                    key={unit._id}
-                    value={unit.code}
-                  >
-                    {`${unit.code} (${unit.group})`}
-                  </MenuItem>
-                )
-              }
-            </Select>
-          </FormControl>
-        }
+            {
+              varsityUnits?.map(unit =>
+                <MenuItem
+                  key={unit._id}
+                  value={unit.code}
+                >
+                  {`${unit.code} (${unit.group})`}
+                </MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
       </div>
     </div>
   );
