@@ -21,7 +21,7 @@ export const LoggedInUser = createContext()
 
 function App() {
   const [pageTitle, setPageTitle] = useState('Dyno Book')
-  const [examType, setExamType] = useState('')
+  const [examType, setExamType] = useState('admission_test')
   const [loggedInUser, setLoggedInUser] = useState({})
   const [varsitiesInfo, setVarsitiesInfo] = useState([])
 

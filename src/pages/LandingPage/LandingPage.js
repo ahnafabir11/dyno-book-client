@@ -30,8 +30,6 @@ const LandingPage = () => {
                   onChange={(e) => setExamType(e.target.value)}
                 >
                   <MenuItem value={'admission_test'}>Admission Test</MenuItem>
-                  <MenuItem value={'hsc_exam'}>HSC Exam</MenuItem>
-                  <MenuItem value={'ssc_exam'}>SSC Exam</MenuItem>
                 </Select>
               </FormControl>
             </Box>
