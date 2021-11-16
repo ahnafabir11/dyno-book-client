@@ -12,6 +12,7 @@ import {
   Switch,
   Box,
 } from "@mui/material";
+import ReactHtmlParser from 'react-html-parser';
 import { MdExpandMore } from "react-icons/md";
 
 const AdmissionQuestion = () => {
@@ -92,22 +93,22 @@ const AdmissionQuestion = () => {
                 .filter((question) => question.category[0].value === subject)
                 .map((question, index) => (
                   <div key={question._id} className="mb-5">
-                    <h1 className="mb-1 text-lg md:text-2xl lg:text-3xl font-medium ">
-                      {index + 1}. {question.question}
-                    </h1>
+                    <div className="flex gap-1 mb-1 text-lg font-medium">
+                      {index + 1}. {ReactHtmlParser(question.question)}
+                    </div>
                     {question.options.map((option, index) => (
-                      <h3
+                      <div
                         key={index}
                         className={
                           showAnswer
                             ? question.answer === option
-                              ? "pl-4 md:text-lg lg:text-xl text-indigo-500"
-                              : "pl-4 md:text-lg lg:text-xl"
-                            : "pl-4 md:text-lg lg:text-xl"
+                              ? "flex gap-1 pl-4 text-indigo-500"
+                              : "flex gap-1 pl-4"
+                            : "flex gap-1 pl-4"
                         }
                       >
-                        {index + 1}) {option}
-                      </h3>
+                        {index + 1}) {ReactHtmlParser(option)}
+                      </div>
                     ))}
 
                     <Accordion sx={{ marginTop: 1 }}>
@@ -117,7 +118,7 @@ const AdmissionQuestion = () => {
                       <AccordionDetails>
                         <Typography>
                           {
-                            question.explanation === "" ? "No Explanation Available" : question.explanation
+                            question.explanation === "" ? "No Explanation Available" : ReactHtmlParser(question.explanation)
                           }
                         </Typography>
                       </AccordionDetails>

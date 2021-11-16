@@ -1,19 +1,29 @@
 import React from 'react';
-import { TextField } from '@mui/material';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
-const ExplanationForm = ({ explanation, setExplanation }) => {
-
+const ExplanationForm = ({ setExplanation, explainEditor, setExplainEditor }) => {
   return (
     <div className="mb-5">
       <h2 className="text-lg mb-3">Explanation</h2>
 
-      <div className="flex flex-col gap-3">
-        <TextField
-          multiline
-          minRows={2}
-          value={explanation}
-          label="Explanation"
-          onChange={(e) => setExplanation(e.target.value)}
+      <div className="border rounded">
+        <CKEditor
+          onReady={editor => {
+            editor.ui.getEditableElement().parentElement.insertBefore(
+              editor.ui.view.toolbar.element,
+              editor.ui.getEditableElement()
+            )
+            setExplainEditor(editor);
+          }}
+          onError={({ willEditorRestart }) => {
+            if (willEditorRestart) {
+              explainEditor.ui.view.toolbar.element.remove()
+            }
+          }}
+          editor={DecoupledEditor}
+          data=""
+          onChange={(event, editor) => setExplanation(editor.getData())}
         />
       </div>
     </div>

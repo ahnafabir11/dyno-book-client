@@ -20,6 +20,8 @@ const AddQuestion = () => {
   const [answer, setAnswer] = useState('')
   const [explanation, setExplanation] = useState('')
   const [category, setCategory] = useState([])
+  const [quesitonEditor, setQuesitonEditor] = useState(null)
+  const [explainEditor, setExplainEditor] = useState(null)
   const [varsityYears, setVarsityYears] = useState([])
   const [varsityUnits, setVarsityUnits] = useState([])
   const [snackbarOpen, setSnackbarOpen] = useState(false)
@@ -40,7 +42,7 @@ const AddQuestion = () => {
   const createQuestion = (e) => {
     e.preventDefault()
     let questionData = {}
-    questionData = { ...questionData, questionPassage}
+    questionData = { ...questionData, questionPassage }
     questionData = { ...questionData, explanation }
 
     if (category.length > 0) {
@@ -113,9 +115,11 @@ const AddQuestion = () => {
         .then(res => res.json())
         .then(data => {
           setQuestion('')
+          quesitonEditor.setData('')
           setOptions([])
           setAnswer('')
           setExplanation('')
+          explainEditor.setData('')
           setAlertType('success')
           setAlertMessage(data.response?.message)
           setSnackbarOpen(true)
@@ -155,10 +159,10 @@ const AddQuestion = () => {
 
         {/* question in all language */}
         <QuestionForm
-          questionPassage={questionPassage}
           setQuestionPassage={setQuestionPassage}
-          question={question}
           setQuestion={setQuestion}
+          quesitonEditor={quesitonEditor}
+          setQuesitonEditor={setQuesitonEditor}
         />
 
         {/* options */}
@@ -174,15 +178,13 @@ const AddQuestion = () => {
 
         {/* explaination */}
         <ExplanationForm
-          explanation={explanation}
           setExplanation={setExplanation}
+          explainEditor={explainEditor}
+          setExplainEditor={setExplainEditor}
         />
 
         {/* category */}
-        <CategoryForm
-          category={category}
-          setCategory={setCategory}
-        />
+        <CategoryForm setCategory={setCategory} />
 
         <Button
           variant="contained"

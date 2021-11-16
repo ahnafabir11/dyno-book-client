@@ -1,7 +1,7 @@
 import React from 'react';
 import { Autocomplete, TextField } from '@mui/material';
 
-const CategoryForm = ({ category, setCategory }) => {
+const CategoryForm = ({ setCategory }) => {
   const categoryList = [
     { value: 'Bangla' }, 
     { value: 'English' }, 

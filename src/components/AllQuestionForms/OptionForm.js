@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { TextField, IconButton } from '@mui/material';
+import { IconButton, Button } from '@mui/material';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import ReactHtmlParser from 'react-html-parser';
 import { BsTrashFill } from 'react-icons/bs';
-import { BsPlusLg } from 'react-icons/bs';
 import { ImCheckmark } from 'react-icons/im';
 import { IoCheckmarkDoneSharp } from 'react-icons/io5';
 
@@ -14,19 +16,26 @@ const OptionForm = (props) => {
     setAlertMessage
   } = props;
 
+  const [editor, setEditor] = useState(null)
   const [option, setOption] = useState('')
 
   const addNewOption = () => {
     if (options.length <= 4) {
-      setOptions([...options, option])
-      setOption('')
+      if (option !== "") {
+        setOptions([...options, option])
+        setOption('')
+        editor.setData('')
+      } else {
+        setAlertType('warning')
+        setAlertMessage('option cannot be empty')
+        setSnackbarOpen(true)
+      }
     } else {
       setOption('')
       setAlertType('warning')
       setAlertMessage('cannot add more than 5')
       setSnackbarOpen(true)
     }
-
   }
 
   const deleteOption = (index) => {
@@ -45,13 +54,9 @@ const OptionForm = (props) => {
               key={index}
               className="flex options-center gap-3"
             >
-              <TextField
-                multiline
-                disabled
-                fullWidth
-                size="small"
-                value={option}
-              />
+              <div className="flex-1 border rounded p-2 text-gray-300">
+                {ReactHtmlParser(option)}
+              </div>
 
               <IconButton
                 color="error"
@@ -70,24 +75,37 @@ const OptionForm = (props) => {
           )
         }
 
-        <div className="flex items-center gap-3">
-          <TextField
-            multiline
-            fullWidth
-            size="small"
-            value={option}
-            label={`Option ${options.length + 1}`}
-            onChange={(e) => setOption(e.target.value)}
-          />
+        <div>
+          <h2 className="text-lg">Option {options.length + 1}</h2>
+          <div className="border rounded">
+            <CKEditor
+              onReady={editor => {
+                editor.ui.getEditableElement().parentElement.insertBefore(
+                  editor.ui.view.toolbar.element,
+                  editor.ui.getEditableElement()
+                )
+                setEditor(editor);
+              }}
+              onError={({ willEditorRestart }) => {
+                if (willEditorRestart) {
+                  editor.ui.view.toolbar.element.remove()
+                }
+              }}
+              editor={DecoupledEditor}
+              data=""
+              onChange={(event, editor) => setOption(editor.getData())}
+            />
 
-          <IconButton
-            color="success"
-            onClick={addNewOption}
-          >
-            <BsPlusLg />
-          </IconButton>
+            <Button
+              fullWidth
+              color="success"
+              variant="outlined"
+              onClick={addNewOption}
+            >
+              add option
+            </Button>
+          </div>
         </div>
-
       </div>
     </div>
   );
