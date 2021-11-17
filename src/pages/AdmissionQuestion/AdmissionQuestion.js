@@ -93,6 +93,7 @@ const AdmissionQuestion = () => {
                 .filter((question) => question.category[0].value === subject)
                 .map((question, index) => (
                   <div key={question._id} className="mb-5">
+                    <div className="mb-5">{ReactHtmlParser(question.questionPassage)}</div>
                     <div className="flex gap-1 mb-1 text-lg font-medium">
                       {index + 1}. {ReactHtmlParser(question.question)}
                     </div>
