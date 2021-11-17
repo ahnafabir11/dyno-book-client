@@ -92,7 +92,7 @@ const AdmissionQuestion = () => {
                 .filter((question) => question.category[0].value === subject)
                 .map((question, index) => (
                   <div key={question._id} className="mb-5">
-                    <h1 className="mb-1 text-lg md:text-2xl lg:text-3xl font-medium ">
+                    <h1 className="mb-1 text-lg font-medium ">
                       {index + 1}. {question.question}
                     </h1>
                     {question.options.map((option, index) => (
@@ -101,9 +101,9 @@ const AdmissionQuestion = () => {
                         className={
                           showAnswer
                             ? question.answer === option
-                              ? "pl-4 md:text-lg lg:text-xl text-indigo-500"
-                              : "pl-4 md:text-lg lg:text-xl"
-                            : "pl-4 md:text-lg lg:text-xl"
+                              ? "pl-4 text-indigo-500"
+                              : "pl-4"
+                            : "pl-4"
                         }
                       >
                         {index + 1}) {option}
@@ -116,9 +116,9 @@ const AdmissionQuestion = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography>
-                          {
-                            question.explanation === "" ? "No Explanation Available" : question.explanation
-                          }
+                          {question.explanation === ""
+                            ? "No Explanation Available"
+                            : question.explanation}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
