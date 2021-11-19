@@ -1,3 +1,4 @@
+import "./AdmissionQuestion.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { PageTitle } from "../../App";
@@ -117,11 +118,11 @@ const AdmissionQuestion = () => {
                         <Typography>Explanation</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography>
-                          {
-                            question.explanation === "" ? "No Explanation Available" : ReactHtmlParser(question.explanation)
-                          }
-                        </Typography>
+                        {
+                          question.explanation === "" 
+                          ? "No Explanation Available" 
+                          : ReactHtmlParser(question.explanation)
+                        }
                       </AccordionDetails>
                     </Accordion>
                   </div>
