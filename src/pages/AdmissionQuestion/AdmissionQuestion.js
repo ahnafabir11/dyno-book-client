@@ -1,3 +1,4 @@
+import "./AdmissionQuestion.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { PageTitle } from "../../App";
@@ -12,6 +13,7 @@ import {
   Switch,
   Box,
 } from "@mui/material";
+import ReactHtmlParser from 'react-html-parser';
 import { MdExpandMore } from "react-icons/md";
 
 const AdmissionQuestion = () => {
@@ -92,22 +94,23 @@ const AdmissionQuestion = () => {
                 .filter((question) => question.category[0].value === subject)
                 .map((question, index) => (
                   <div key={question._id} className="mb-5">
-                    <h1 className="mb-1 text-lg font-medium ">
-                      {index + 1}. {question.question}
-                    </h1>
+                    <div className="mb-5">{ReactHtmlParser(question.questionPassage)}</div>
+                    <div className="flex gap-1 mb-1 text-lg font-medium">
+                      {index + 1}. {ReactHtmlParser(question.question)}
+                    </div>
                     {question.options.map((option, index) => (
-                      <h3
+                      <div
                         key={index}
                         className={
                           showAnswer
                             ? question.answer === option
-                              ? "pl-4 text-indigo-500"
-                              : "pl-4"
-                            : "pl-4"
+                              ? "flex gap-1 pl-4 text-indigo-500"
+                              : "flex gap-1 pl-4"
+                            : "flex gap-1 pl-4"
                         }
                       >
-                        {index + 1}) {option}
-                      </h3>
+                        {index + 1}) {ReactHtmlParser(option)}
+                      </div>
                     ))}
 
                     <Accordion sx={{ marginTop: 1 }}>
@@ -115,11 +118,11 @@ const AdmissionQuestion = () => {
                         <Typography>Explanation</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography>
-                          {question.explanation === ""
-                            ? "No Explanation Available"
-                            : question.explanation}
-                        </Typography>
+                        {
+                          question.explanation === "" 
+                          ? "No Explanation Available" 
+                          : ReactHtmlParser(question.explanation)
+                        }
                       </AccordionDetails>
                     </Accordion>
                   </div>
