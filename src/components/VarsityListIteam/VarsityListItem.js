@@ -20,7 +20,9 @@ const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
         type === 'question' &&
         <>
           <ListItemButton onClick={() => setOpen(!open)}>
-            <ListItemText>{varsity.name}</ListItemText>
+            <ListItemText>
+              <span className="capitalize">{varsity.name}</span>
+            </ListItemText>
             <div className="ml-2">
               {open ? <MdExpandLess /> : <MdExpandMore />}
             </div>
@@ -30,7 +32,7 @@ const VarsityListItem = ({ varsity, type, setDrawerOpen }) => {
             <List sx={{ pl: 4 }}>
               {
                 varsity.accYear.map(year =>
-                  <VarsityYearItem 
+                  <VarsityYearItem
                     key={year._id}
                     year={year}
                     varsity={varsity}

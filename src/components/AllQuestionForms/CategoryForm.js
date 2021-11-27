@@ -8,6 +8,7 @@ const CategoryForm = ({ setCategory }) => {
     { value: 'Accounting' }, 
     { value: 'Management' }, 
     { value: 'Finance' }, 
+    { value: 'Marketing' }, 
     { value: 'Physics' }, 
     { value: 'Mathematics' }, 
     { value: 'Biology' }, 

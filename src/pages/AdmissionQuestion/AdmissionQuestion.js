@@ -120,7 +120,7 @@ const AdmissionQuestion = () => {
                       <AccordionDetails>
                         {
                           question.explanation === "" 
-                          ? "No Explanation Available" 
+                          ? "Explanation Will Be Available Soon" 
                           : ReactHtmlParser(question.explanation)
                         }
                       </AccordionDetails>
