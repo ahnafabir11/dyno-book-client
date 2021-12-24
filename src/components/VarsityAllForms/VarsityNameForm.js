@@ -62,7 +62,7 @@ const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-3">
+    <div>
       <h1 className="text-center mt-6 text-xl sm:text-3xl">UPDATE VARSITY NAME</h1>
       <form
         onSubmit={updateVarsityName}

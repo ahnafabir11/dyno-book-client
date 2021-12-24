@@ -10,6 +10,11 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
 
   const [varsitiesInfo] = useContext(VarsitiesInfo)
 
+  const addQuestion = () => {
+    navigate('/questions/create')
+    setDrawerOpen(false)
+  }
+
   return (
     <Drawer
       anchor={type === "edit" ? 'right' : 'left'}
@@ -36,7 +41,7 @@ const HeaderDrawer = ({ type, drawerOpen, setDrawerOpen }) => {
           <Button
             color="secondary"
             variant="contained"
-            onClick={() => navigate('/questions/create')}
+            onClick={addQuestion}
           >
             add new question
           </Button>

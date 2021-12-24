@@ -3,6 +3,7 @@ import { VarsitiesInfo } from '../../App';
 import { TextField, IconButton } from '@mui/material';
 import { BsTrashFill } from 'react-icons/bs';
 import { BsPlusLg } from 'react-icons/bs';
+import VarsityUnitForm from './VarsityUnitForm';
 
 const VarsityYearForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessage }) => {
   const [, setVarsitiesInfo] = useContext(VarsitiesInfo)
@@ -90,61 +91,72 @@ const VarsityYearForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
 
   return (
     <div>
-      <h1 className="text-center mt-8 text-xl sm:text-3xl">ADD/REMOVE ACC YEAR</h1>
+      <h1 className="text-center mt-8 text-xl sm:text-3xl">ACADEMIC YEARS</h1>
 
-      <div className="mt-8">
+      <div className="flex flex-col gap-16 my-8">
         {
           upDatedVarsity.accYear?.map(year =>
-            <div
-              key={year._id}
-              className="flex gap-2 mb-3"
-            >
-              <TextField
-                disabled
-                size="small"
-                value={year.start}
+            <div key={year._id}>
+              <div className="flex gap-2">
+                <TextField
+                  fullWidth
+                  disabled
+                  size="small"
+                  value={year.start}
+                />
+                <TextField
+                  fullWidth
+                  disabled
+                  size="small"
+                  value={year.end}
+                />
+                <IconButton
+                  color="error"
+                  onClick={() => deleteAccYear(year._id)}
+                >
+                  <BsTrashFill />
+                </IconButton>
+              </div>
+
+              <VarsityUnitForm
+                varsity={varsity}
+                year={year}
+                setSnackbarOpen={setSnackbarOpen}
+                setAlertType={setAlertType}
+                setAlertMessage={setAlertMessage}
               />
-              <TextField
-                disabled
-                size="small"
-                value={year.end}
-              />
-              <IconButton
-                color="error"
-                onClick={() => deleteAccYear(year._id)}
-              >
-                <BsTrashFill />
-              </IconButton>
             </div>
           )
         }
-      </div>
 
-      <div className="flex gap-2 mt-2">
-        <TextField
-          required
-          size="small"
-          type="number"
-          value={accStart}
-          placeholder="Starting Year"
-          onChange={(e) => setAccStart(e.target.value)}
-        />
+        <div className="flex gap-2">
+          <TextField
+            required
+            fullWidth
+            size="small"
+            type="number"
+            value={accStart}
+            placeholder="Starting Year"
+            onChange={(e) => setAccStart(e.target.value)}
+          />
 
-        <TextField
-          required
-          size="small"
-          type="number"
-          value={accEnd}
-          placeholder="Ending Year"
-          onChange={(e) => setAccEnd(e.target.value)}
-        />
+          <TextField
+            required
+            fullWidth
+            size="small"
+            type="number"
+            value={accEnd}
+            placeholder="Ending Year"
+            onChange={(e) => setAccEnd(e.target.value)}
+          />
 
-        <IconButton
-          color="success"
-          onClick={addAccYear}
-        >
-          <BsPlusLg />
-        </IconButton>
+          <IconButton
+            color="success"
+            onClick={addAccYear}
+          >
+            <BsPlusLg />
+          </IconButton>
+        </div>
       </div>
     </div>
   );

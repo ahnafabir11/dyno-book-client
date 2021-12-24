@@ -33,7 +33,7 @@ const QuestionForm = ({ setQuestionPassage, setQuestion, quesitonEditor, setQues
 
         <div>
           <h2 className="text-lg">Question</h2>
-          <div className="border-2 rounded">
+          <div className="border rounded">
             <CKEditor
               onReady={editor => {
                 editor.ui.getEditableElement().parentElement.insertBefore(

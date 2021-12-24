@@ -114,6 +114,7 @@ const AddQuestion = () => {
       })
         .then(res => res.json())
         .then(data => {
+          setQuestionPassage('')
           setQuestion('')
           quesitonEditor.setData('')
           setOptions([])

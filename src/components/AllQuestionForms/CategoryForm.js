@@ -13,7 +13,9 @@ const CategoryForm = ({ setCategory }) => {
     { value: 'Mathematics' }, 
     { value: 'Biology' }, 
     { value: 'ICT' }, 
-    { value: 'GK' }, 
+    { value: 'General Knowledge' },
+    { value: 'General Knowledge (Bangladesh)' },
+    { value: 'General Knowledge (International)' },
   ]
 
   return (

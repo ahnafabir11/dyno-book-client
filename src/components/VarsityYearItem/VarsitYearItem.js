@@ -28,7 +28,7 @@ const VarsitYearItem = ({ year, varsity, setDrawerOpen }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List sx={{ pl: 4 }}>
           {
-            varsity.units.map(unit =>
+            year.units.map(unit =>
               <ListItemButton
                 key={unit._id}
                 onClick={() => showQuestions(varsity.name, `${year.start}-${year.end}`, unit.code)}
