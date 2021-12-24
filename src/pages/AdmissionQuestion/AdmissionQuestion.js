@@ -15,12 +15,14 @@ import {
 } from "@mui/material";
 import ReactHtmlParser from 'react-html-parser';
 import { MdExpandMore } from "react-icons/md";
+import QuestionSkeleton from "../../components/skeletons/QuestionSkeleton";
 
 const AdmissionQuestion = () => {
   const { varsityName, accYear, unit } = useParams();
 
   const [, setPageTitle] = useContext(PageTitle);
 
+  const [isQuestionLoaded, setIsQuestionLoaded] = useState(false)
   const [questions, setQuestions] = useState([]);
   const [questionSubjects, setQuestionSubjects] = useState([]);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -31,6 +33,11 @@ const AdmissionQuestion = () => {
   useEffect(() => setPageTitle(`${varsityName} | ${accYear} | Dyno Book`));
 
   useEffect(() => {
+    // reseting question list
+    setIsQuestionLoaded(false)
+    setQuestions([])
+    setQuestionSubjects([])
+
     fetch("http://localhost:5000/api/questions/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,6 +46,7 @@ const AdmissionQuestion = () => {
       .then((res) => res.json())
       .then((data) => {
         setQuestions(data.data);
+        setIsQuestionLoaded(true)
 
         // getting how many subject here
         let subArray = data.data.map((q) => {
@@ -129,6 +137,16 @@ const AdmissionQuestion = () => {
                 ))}
             </div>
           ))}
+          
+          {/* skeleton */}
+          {
+            !isQuestionLoaded &&
+            <div className="flex flex-col gap-5">
+              <QuestionSkeleton />
+              <QuestionSkeleton />
+            </div>
+          }
+
         </div>
       </div>
 
