@@ -31,13 +31,17 @@ const AddQuestion = () => {
   useEffect(() => setPageTitle('Add New Question | Dyno Book'))
 
   useEffect(() => {
-    const varsity = varsitiesInfo.filter(varsity => varsity.name === varsityName)
-    setAccYear('')
     setUnit('')
+    setAccYear('')
+    const varsity = varsitiesInfo.filter(varsity => varsity.name === varsityName)
     setVarsityYears(varsity[0]?.accYear)
-    setVarsityUnits(varsity[0]?.units)
-
+    
   }, [varsityName, varsitiesInfo])
+
+  useEffect(() => {
+    const varsity = varsitiesInfo.filter(varsity => varsity.name === varsityName)
+    setVarsityUnits(varsity[0]?.accYear.filter(year => `${year.start}-${year.end}` === accYear)[0]?.units)
+  }, [varsityName, varsitiesInfo, accYear])
 
   const createQuestion = (e) => {
     e.preventDefault()
