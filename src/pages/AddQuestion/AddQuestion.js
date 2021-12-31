@@ -20,6 +20,7 @@ const AddQuestion = () => {
   const [answer, setAnswer] = useState('')
   const [explanation, setExplanation] = useState('')
   const [category, setCategory] = useState([])
+  const [passageEditor, setPassageEditor] = useState(null)
   const [quesitonEditor, setQuesitonEditor] = useState(null)
   const [explainEditor, setExplainEditor] = useState(null)
   const [varsityYears, setVarsityYears] = useState([])
@@ -119,6 +120,7 @@ const AddQuestion = () => {
         .then(res => res.json())
         .then(data => {
           setQuestionPassage('')
+          passageEditor.setData('')
           setQuestion('')
           quesitonEditor.setData('')
           setOptions([])
@@ -166,6 +168,8 @@ const AddQuestion = () => {
         <QuestionForm
           setQuestionPassage={setQuestionPassage}
           setQuestion={setQuestion}
+          passageEditor={passageEditor}
+          setPassageEditor={setPassageEditor}
           quesitonEditor={quesitonEditor}
           setQuesitonEditor={setQuesitonEditor}
         />

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
-const QuestionForm = ({ setQuestionPassage, setQuestion, quesitonEditor, setQuesitonEditor }) => {
-  const [editor, setEditor] = useState(null)
-
+const QuestionForm = ({ passageEditor, setPassageEditor, setQuestionPassage, setQuestion, quesitonEditor, setQuesitonEditor }) => {
   return (
     <div className="mb-5">
       <div className="flex flex-col gap-3">
@@ -17,11 +15,11 @@ const QuestionForm = ({ setQuestionPassage, setQuestion, quesitonEditor, setQues
                   editor.ui.view.toolbar.element,
                   editor.ui.getEditableElement()
                 )
-                setEditor(editor);
+                setPassageEditor(editor);
               }}
               onError={({ willEditorRestart }) => {
                 if (willEditorRestart) {
-                  editor.ui.view.toolbar.element.remove()
+                  passageEditor.ui.view.toolbar.element.remove()
                 }
               }}
               editor={DecoupledEditor}
