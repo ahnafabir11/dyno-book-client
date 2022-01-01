@@ -1,14 +1,15 @@
 import "./AboutUs.css";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { PageTitle } from "../../App";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import { MdExpandMore } from "react-icons/md";
 import teamMemberOne from "../../images/team-member-img-1.jpg";
 import teamMemberTwo from "../../images/team-member-img-2.jpg";
 
-const AboutUs = ({ setPageTitle }) => {
-  useEffect(() => {
-    setPageTitle("About Us | Dyno Book");
-  }, []);
+const AboutUs = () => {
+  const [,setPageTitle] = useContext(PageTitle)
+  
+  useEffect(() => setPageTitle("About Us | Dyno Book"))
 
   return (
     <main className="container mx-auto px-2">

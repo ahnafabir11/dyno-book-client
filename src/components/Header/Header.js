@@ -2,19 +2,24 @@ import "./Header.css";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { ExamTypeContext } from "../../App";
-import { IconButton, Typography, Button, Drawer, List } from "@mui/material";
+import { LoggedInUser } from './../../App';
+import { IconButton, Typography } from "@mui/material";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
-import UniversityListItem from "../UniversityListItem/UniversityListItem";
+import { FiEdit } from "react-icons/fi";
+import HeaderDrawer from '../../components/HeaderDrawer/HeaderDrawer';
 
 const Header = () => {
   const [examType] = useContext(ExamTypeContext)
+  const [loggedInUser] = useContext(LoggedInUser)
+
   const [openVersityDrawer, setOpenVersityDrawer] = useState(false)
+  const [openVersityListDrawer, setOpenVersityListDrawer] = useState(false)
 
   return (
     <nav className="h-14">
       <div className="bg-white flex items-center border-b fixed w-full z-10 h-14">
         {
-          examType === "admission_test" && 
+          examType === "admission_test" &&
           <IconButton
             size="large"
             edge="start"
@@ -43,28 +48,39 @@ const Header = () => {
 
         <Link to="/about" className="text-blue-500 font-medium mr-4">About Us</Link>
 
-        <div className="hidden">
-          <Button variant="contained">
-            <Typography noWrap>add new question</Typography>
-          </Button>
-        </div>
+        {
+          loggedInUser._id &&
+          <>
+            <IconButton
+              size="large"
+              edge="start"
+              aria-label="open drawer"
+              onClick={() => setOpenVersityListDrawer(true)}
+              sx={{ mr: { xs: 0, md: 2 } }}
+            >
+              <FiEdit color="#000" />
+            </IconButton>
+          </>
+        }
       </div>
 
-      {/* Versity Drawer */}
-      <Drawer
-        anchor="left"
-        open={openVersityDrawer}
-        onClose={() => setOpenVersityDrawer(false)}
-      >
-        <h6 className="h-14 font-bold border-b flex items-center justify-center">List Of Universities</h6>
-        <List>
-          <UniversityListItem />
-          <UniversityListItem />
-          <UniversityListItem />
-          <UniversityListItem />
-          <UniversityListItem />
-        </List>
-      </Drawer>
+      {/* Question Versity Drawer (all) */}
+      <HeaderDrawer
+        type="question"
+        drawerOpen={openVersityDrawer}
+        setDrawerOpen={setOpenVersityDrawer}
+
+      />
+
+
+      {/* Edit Versity Drawer (admin) */}
+      <HeaderDrawer
+        type="edit"
+        drawerOpen={openVersityListDrawer}
+        setDrawerOpen={setOpenVersityListDrawer}
+
+      />
+
     </nav>
   );
 };

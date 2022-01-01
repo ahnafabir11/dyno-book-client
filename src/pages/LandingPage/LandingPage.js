@@ -1,17 +1,16 @@
 import './LandingPage.css'
-import React, { useContext, useEffect, useState } from 'react';
-import { ExamTypeContext } from '../../App';
+import React, { useContext, useEffect } from 'react';
+import { ExamTypeContext, PageTitle } from '../../App';
 import { Box } from '@mui/material';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import topSectionImg from '../../images/home-page-img.png';
 import secondSectionImg from '../../images/home-page-img-2.png';
 
-const LandingPage = ({ setPageTitle }) => {
+const LandingPage = () => {
+  const [, setPageTitle] = useContext(PageTitle)
   const [examType, setExamType] = useContext(ExamTypeContext)
 
-  useEffect(() => {
-    setPageTitle('Dyno Book')
-  }, [])
+  useEffect(() => setPageTitle('Dyno Book'))
 
   return (
     <div className="LandingPage">
@@ -31,8 +30,6 @@ const LandingPage = ({ setPageTitle }) => {
                   onChange={(e) => setExamType(e.target.value)}
                 >
                   <MenuItem value={'admission_test'}>Admission Test</MenuItem>
-                  <MenuItem value={'hsc_exam'}>HSC Exam</MenuItem>
-                  <MenuItem value={'ssc_exam'}>SSC Exam</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -60,7 +57,6 @@ const LandingPage = ({ setPageTitle }) => {
             </div>
           </div>
         </section>
-
       </section>
     </div>
   );
