@@ -1,7 +1,9 @@
 import "./AdmissionQuestion.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { PageTitle } from "../../App";
+import { useNavigate } from 'react-router-dom';
+import { LoggedInUser, PageTitle } from "../../App";
+import ReactHtmlParser from 'react-html-parser';
 import {
   Snackbar,
   Alert,
@@ -12,15 +14,17 @@ import {
   FormControlLabel,
   Switch,
   Box,
+  Button
 } from "@mui/material";
-import ReactHtmlParser from 'react-html-parser';
 import { MdExpandMore } from "react-icons/md";
 import QuestionSkeleton from "../../components/skeletons/QuestionSkeleton";
 
 const AdmissionQuestion = () => {
+  const navigate = useNavigate()
   const { varsityName, accYear, unit } = useParams();
 
   const [, setPageTitle] = useContext(PageTitle);
+  const [loggedInUser] = useContext(LoggedInUser)
 
   const [isQuestionLoaded, setIsQuestionLoaded] = useState(false)
   const [questions, setQuestions] = useState([]);
@@ -104,7 +108,7 @@ const AdmissionQuestion = () => {
                   <div key={question._id} className="mb-5">
                     <div className="mb-5">{ReactHtmlParser(question.questionPassage)}</div>
                     <div className="flex gap-1 mb-1 text-lg font-medium">
-                      {index + 1}. {ReactHtmlParser(question.question)}
+                      {index + 1}. <div>{ReactHtmlParser(question.question)}</div>
                     </div>
                     {question.options.map((option, index) => (
                       <div
@@ -127,9 +131,21 @@ const AdmissionQuestion = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         {
-                          question.explanation === "" 
-                          ? "Explanation Will Be Available Soon" 
-                          : ReactHtmlParser(question.explanation)
+                          question.explanation === "" ?
+                            "Explanation Will Be Available Soon" :
+                            <>
+                              {ReactHtmlParser(question.explanation)}
+                              {
+                                loggedInUser.email &&
+                                <Button
+                                  sx={{ mt: 5 }}
+                                  variant="contained"
+                                  onClick={() => navigate(`/questions/edit/${question._id}`)}
+                                >
+                                  edit Question
+                                </Button>
+                              }
+                            </>
                         }
                       </AccordionDetails>
                     </Accordion>
@@ -137,7 +153,7 @@ const AdmissionQuestion = () => {
                 ))}
             </div>
           ))}
-          
+
           {/* skeleton */}
           {
             !isQuestionLoaded &&

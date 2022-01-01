@@ -10,6 +10,7 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import AdmissionQuestion from './pages/AdmissionQuestion/AdmissionQuestion';
 import UpdateVarsity from './pages/UpdateVarsity/UpdateVarsity';
 import AddQuestion from './pages/AddQuestion/AddQuestion';
+import UpdateQuestion from './pages/UpdateQuestion/UpdateQuestion';
 import WrongUrl from './pages/404/WrongUrl';
 import Login from './pages/Login/Login';
 
@@ -51,6 +52,7 @@ function App() {
               <Route path='/question/:varsityName/:accYear/:unit' element={<AdmissionQuestion />} />
               <Route path='/edit/varsity/:id' element={<PrivateRoute><UpdateVarsity /></PrivateRoute>} />
               <Route path='/questions/create' element={<PrivateRoute><AddQuestion /></PrivateRoute>} />
+              <Route path='/questions/edit/:id' element={<PrivateRoute><UpdateQuestion /></PrivateRoute>} />
               <Route path='/ad-login' element={<PrivateLogin><Login /></PrivateLogin>} />
               <Route path='*' element={<WrongUrl />} />
             </Routes>
