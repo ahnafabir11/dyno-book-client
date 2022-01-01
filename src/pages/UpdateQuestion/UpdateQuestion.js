@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import { PageTitle } from '../../App';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -10,6 +10,7 @@ import { ImCheckmark } from 'react-icons/im';
 import { IoCheckmarkDoneSharp } from 'react-icons/io5';
 
 const UpdateQuestion = () => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const [, setPageTitle] = useContext(PageTitle)
 
@@ -94,9 +95,43 @@ const UpdateQuestion = () => {
     let questionData = {
       id,
       questionPassage,
-      question,
-      options,
       explanation,
+    }
+
+    if (question !== '') {
+      questionData = { ...questionData, question }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('question is required')
+      setSnackbarOpen(true)
+      return
+    }
+
+    if (answer !== '') {
+      questionData = { ...questionData, answer }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('please select an answer')
+      setSnackbarOpen(true)
+      return
+    }
+
+    if (options.length <= 5) {
+      questionData = { ...questionData, options }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('minimum 4 opiton required')
+      setSnackbarOpen(true)
+      return
+    }
+
+    if (options.length > 3) {
+      questionData = { ...questionData, options }
+    } else {
+      setAlertType('warning')
+      setAlertMessage('minimum 4 opiton required')
+      setSnackbarOpen(true)
+      return
     }
 
     if (category.length > 0) {
@@ -110,8 +145,17 @@ const UpdateQuestion = () => {
 
     const questionDataLength = Object.keys(questionData).length
 
-    if (questionDataLength === 6) {
-      console.log(questionData)
+    if (questionDataLength === 7) {
+      fetch("http://localhost:5000/api/questions/update", {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(questionData)
+      })
+      .then(res => res.json())
+      .then(data => {
+        navigate(`/question/${data.data[0].varsityName}/${data.data[0].accYear}/${data.data[0].unit}`)
+      })
+
     } else {
       setAlertType('warning')
       setAlertMessage('please fill all data properly')

@@ -58,7 +58,7 @@ const AddQuestion = () => {
       setSnackbarOpen(true)
     }
 
-    if (Object.keys(answer).length > 0) {
+    if (answer !== '') {
       questionData = { ...questionData, answer }
     } else {
       setAlertType('warning')

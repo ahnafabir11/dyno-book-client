@@ -132,7 +132,19 @@ const AdmissionQuestion = () => {
                       <AccordionDetails>
                         {
                           question.explanation === "" ?
-                            "Explanation Will Be Available Soon" :
+                            <div>
+                              <p>Explanation Will Be Available Soon</p>
+                              {
+                                loggedInUser.email &&
+                                <Button
+                                  sx={{ mt: 5 }}
+                                  variant="contained"
+                                  onClick={() => navigate(`/questions/edit/${question._id}`)}
+                                >
+                                  edit Question
+                                </Button>
+                              }
+                            </div> :
                             <>
                               {ReactHtmlParser(question.explanation)}
                               {
