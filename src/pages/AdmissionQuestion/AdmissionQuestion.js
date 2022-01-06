@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
 import { LoggedInUser, PageTitle } from "../../App";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import ReactHtmlParser from 'react-html-parser';
 import {
   Snackbar,
@@ -34,7 +35,11 @@ const AdmissionQuestion = () => {
   const [alertType, setAlertType] = useState("error");
   const [alertMessage, setAlertMessage] = useState("");
 
-  useEffect(() => setPageTitle(`${varsityName} | ${accYear} | Dyno Book`));
+  useEffect(() => {
+    setPageTitle(`${varsityName} | ${accYear} | Dyno Book`)
+    const analytics = getAnalytics();
+    logEvent(analytics, `${varsityName} | ${accYear} | question page`);
+  }, []);
 
   useEffect(() => {
     // reseting question list

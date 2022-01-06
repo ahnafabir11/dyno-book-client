@@ -1,6 +1,7 @@
 import './App.css';
 import React, { createContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import * as firebase from 'firebase/app';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import PrivateLogin from './components/PrivateRoute/PrivateLogin';
 import Header from './components/Header/Header';
@@ -13,6 +14,10 @@ import AddQuestion from './pages/AddQuestion/AddQuestion';
 import UpdateQuestion from './pages/UpdateQuestion/UpdateQuestion';
 import WrongUrl from './pages/404/WrongUrl';
 import Login from './pages/Login/Login';
+import firebaseConfig from './firebase.config';
+
+// firebase initialization
+firebase.initializeApp(firebaseConfig)
 
 // all context api
 export const PageTitle = createContext()
