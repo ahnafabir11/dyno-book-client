@@ -18,7 +18,7 @@ const UpdateVarsity = () => {
   useEffect(() => setPageTitle("Edit | University Info"))
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/varsities/${id}`)
+    fetch(`https://dyno-server.herokuapp.com/api/varsities/${id}`)
       .then(res => res.json())
       .then(data => setVarsity(data.data[0]))
       .catch(err => console.log(err.message))

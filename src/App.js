@@ -31,7 +31,7 @@ function App() {
 
   // load varsity info
   useEffect(() => {
-    fetch("http://localhost:5000/api/varsities")
+    fetch("https://dyno-server.herokuapp.com/api/varsities")
       .then(res => res.json())
       .then(data => setVarsitiesInfo(data.data))
       .catch(err => console.log(err.message))

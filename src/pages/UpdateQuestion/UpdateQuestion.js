@@ -38,7 +38,7 @@ const UpdateQuestion = () => {
 
   // load question data
   useEffect(() => {
-    fetch(`http://localhost:5000/api/questions/${id}`)
+    fetch(`https://dyno-server.herokuapp.com/api/questions/${id}`)
       .then(res => res.json())
       .then(data => {
         setQuestionPassage(data.data[0].questionPassage)
@@ -146,7 +146,7 @@ const UpdateQuestion = () => {
     const questionDataLength = Object.keys(questionData).length
 
     if (questionDataLength === 7) {
-      fetch("http://localhost:5000/api/questions/update", {
+      fetch("https://dyno-server.herokuapp.com/api/questions/update", {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(questionData)

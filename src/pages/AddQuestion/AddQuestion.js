@@ -112,7 +112,7 @@ const AddQuestion = () => {
     const isValid = questiondataKeys.every((val) => hasQuestionDataKeys.includes(val))
 
     if (isValid) {
-      fetch("http://localhost:5000/api/questions/add", {
+      fetch("https://dyno-server.herokuapp.com/api/questions/add", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(questionData)

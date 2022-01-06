@@ -42,7 +42,7 @@ const AdmissionQuestion = () => {
     setQuestions([])
     setQuestionSubjects([])
 
-    fetch("http://localhost:5000/api/questions/filter", {
+    fetch("https://dyno-server.herokuapp.com/api/questions/filter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ varsityName, accYear, unit }),

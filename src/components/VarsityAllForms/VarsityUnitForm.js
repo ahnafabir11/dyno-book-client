@@ -23,14 +23,14 @@ const VarsityUnitForm = ({ varsity, year, setSnackbarOpen, setAlertType, setAler
     const isValid = Object.keys(newUnitData).length
 
     if (isValid === 4) {
-      fetch("http://localhost:5000/api/varsities/add/unit", {
+      fetch("https://dyno-server.herokuapp.com/api/varsities/add/unit", {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUnitData)
       })
         .then(res => res.json())
         .then(data => {
-          fetch("http://localhost:5000/api/varsities")
+          fetch("https://dyno-server.herokuapp.com/api/varsities")
             .then(res => res.json())
             .then(data => setVarsitiesInfo(data.data))
             .catch(err => {
@@ -58,14 +58,14 @@ const VarsityUnitForm = ({ varsity, year, setSnackbarOpen, setAlertType, setAler
   }
 
   const deleteUnit = (id) => {
-    fetch("http://localhost:5000/api/varsities/remove/unit", {
+    fetch("https://dyno-server.herokuapp.com/api/varsities/remove/unit", {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ varsityId: varsity._id, accId: year._id, unitId: id })
     })
       .then(res => res.json())
       .then(data => {
-        fetch("http://localhost:5000/api/varsities")
+        fetch("https://dyno-server.herokuapp.com/api/varsities")
           .then(res => res.json())
           .then(data => setVarsitiesInfo(data.data))
           .catch(err => {

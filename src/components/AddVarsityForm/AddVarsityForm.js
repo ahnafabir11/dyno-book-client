@@ -21,14 +21,14 @@ const AddVarsityForm = () => {
     const isValid = Object.keys(newVarsity)
 
     if (isValid.length === 2) {
-      fetch("http://localhost:5000/api/varsities/add", {
+      fetch("https://dyno-server.herokuapp.com/api/varsities/add", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newVarsity)
       })
         .then(res => res.json())
         .then(data => {
-          fetch("http://localhost:5000/api/varsities")
+          fetch("https://dyno-server.herokuapp.com/api/varsities")
             .then(res => res.json())
             .then(data => setVarsitiesInfo(data.data))
             .catch(err => console.log(err.message))

@@ -25,14 +25,14 @@ const VarsityNameForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
     const isValid = Object.keys(value)
 
     if (isValid.length > 1) {
-      fetch("http://localhost:5000/api/varsities/update/name", {
+      fetch("https://dyno-server.herokuapp.com/api/varsities/update/name", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(value)
       })
         .then(res => res.json())
         .then(data => {
-          fetch("http://localhost:5000/api/varsities")
+          fetch("https://dyno-server.herokuapp.com/api/varsities")
             .then(res => res.json())
             .then(data => setVarsitiesInfo(data.data))
             .catch(err => {

@@ -19,14 +19,14 @@ const VarsityYearForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
   }, [varsity])
 
   const deleteAccYear = (id) => {
-    fetch("http://localhost:5000/api/varsities/remove/accYear", {
+    fetch("https://dyno-server.herokuapp.com/api/varsities/remove/accYear", {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ varsityId: varsity._id, yearId: id })
     })
       .then(res => res.json())
       .then(data => {
-        fetch("http://localhost:5000/api/varsities")
+        fetch("https://dyno-server.herokuapp.com/api/varsities")
           .then(res => res.json())
           .then(data => setVarsitiesInfo(data.data))
           .catch(err => {
@@ -54,14 +54,14 @@ const VarsityYearForm = ({ varsity, setSnackbarOpen, setAlertType, setAlertMessa
     const isValid = Object.keys(newAccYear).length
 
     if (isValid === 3) {
-      fetch("http://localhost:5000/api/varsities/add/accYear", {
+      fetch("https://dyno-server.herokuapp.com/api/varsities/add/accYear", {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newAccYear)
       })
         .then(res => res.json())
         .then(data => {
-          fetch("http://localhost:5000/api/varsities")
+          fetch("https://dyno-server.herokuapp.com/api/varsities")
             .then(res => res.json())
             .then(data => setVarsitiesInfo(data.data))
             .catch(err => {
